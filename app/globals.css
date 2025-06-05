@@ -1,26 +1,147 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import 'tailwindcss';
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-neutral-0: #ffffff;
+  --color-neutral-200: #cbcdd0;
+  --color-neutral-300: #9393b7;
+  --color-neutral-600: #57577b;
+  --color-neutral-900: #21214d;
+  --color-blue-100: #e0e6fa;
+  --color-blue-200: #c7d3f7;
+  --color-blue-300: #89caff;
+  --color-blue-600: #4865db;
+  --color-blue-700: #2a4cd5;
+  --color-red-300: #ff9899;
+  --color-red-700: #e60013;
+  --color-indigo-200: #b881ff;
+  --color-green-300: #89e780;
+  --color-amber-300: #ffc97c;
+
+  --bg-light-gradient: linear-gradient(180deg, #f5f5ff 72.99%, #e0e0ff 100%);
+
+  --font-sans: var(--font-reddit-sans);
+
+  --radius-0: 0px;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-full: 999px;
+
+  --spacing-0: 0px;
+  --spacing-025: 2px;
+  --spacing-050: 4px;
+  --spacing-075: 6px;
+  --spacing-100: 8px;
+  --spacing-125: 10px;
+  --spacing-150: 12px;
+  --spacing-200: 16px;
+  --spacing-250: 20px;
+  --spacing-300: 24px;
+  --spacing-400: 32px;
+  --spacing-500: 40px;
+  --spacing-600: 48px;
+  --spacing-800: 64px;
+  --spacing-1000: 80px;
+  --spacing-ui-xsmall: 8px 16px;
+  --spacing-ui-small: 12px 16px;
+
+  --text-025: 12px;
+  --text-050: 13px;
+  --text-075: 15px;
+  --text-100: 18px;
+  --text-125: 20px;
+  --text-150: 24px;
+  --text-200: 28px;
+  --text-250: 32px;
+  --text-300: 40px;
+  --text-400: 46px;
+  --text-500: 52px;
+
+  --leading-100: 100%;
+  --leading-110: 110%;
+  --leading-120: 120%;
+  --leading-130: 130%;
+  --leading-140: 140%;
+
+  --tracking-0: 0px;
+  --tracking-03: -0.3px;
+  --tracking-2: -2px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-image: var(--bg-light-gradient);
+  }
+  body {
+    @apply h-screen w-screen;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .text-preset-1 {
+    @apply text-300 leading-120 tracking-2 font-bold md:text-500 md:leading-140;
+  }
+  .text-preset-2 {
+    @apply text-300 leading-120 tracking-03 font-bold md:text-250;
+  }
+  .text-preset-3 {
+    @apply text-250 leading-140 tracking-03 font-bold md:text-200 md:leading-130;
+  }
+  .text-preset-4 {
+    @apply text-150 leading-140 tracking-0 font-normal;
+  }
+  .text-preset-4-semibold {
+    @apply text-150 leading-140 tracking-0 font-semibold;
+  }
+  .text-preset-5 {
+    @apply text-125 leading-140 tracking-0 font-semibold;
+  }
+  .text-preset-6 {
+    @apply text-100 leading-140 tracking-03 font-normal;
+  }
+  .text-preset-6-medium {
+    @apply text-100 leading-120 tracking-0 font-medium;
+  }
+  .text-preset-6-italic {
+    @apply text-100 leading-130 tracking-0 font-medium italic;
+  }
+  .text-preset-7 {
+    @apply text-075 leading-140 tracking-03 font-normal;
+  }
+  .text-preset-8 {
+    @apply text-050 leading-100 tracking-0 font-semibold;
+  }
+  .text-preset-9 {
+    @apply text-025 leading-110 tracking-0 font-normal;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .flex-col-center {
+    @apply flex flex-col items-center justify-center;
+  }
+
+  .p-xsmall {
+    padding: var(--spacing-ui-xsmall);
+  }
+  .p-small {
+    padding: var(--spacing-ui-small);
+  }
+
+  .text-link {
+    @apply text-blue-600;
+  }
+
+  .shadow-container {
+    box-shadow: 0 8px 16px rgba(32, 37, 41, 0.08);
+  }
 }
