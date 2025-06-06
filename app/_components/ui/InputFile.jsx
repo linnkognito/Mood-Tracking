@@ -2,8 +2,15 @@ import Image from 'next/image';
 import Label from './Label';
 import Paragraph from '../text/Paragraph';
 import Button from './Button';
+import FormError from './FormError';
 
-function InputFile({ id, label = null, avatar = false, ...props }) {
+function InputFile({
+  id,
+  label = null,
+  avatar = false,
+  error = true,
+  ...props
+}) {
   return (
     <div className='flex items-start cursor-pointer'>
       <Image
@@ -24,6 +31,13 @@ function InputFile({ id, label = null, avatar = false, ...props }) {
         <Button variant='secondary' className='mt-200'>
           Upload
         </Button>
+
+        {/* Error message */}
+        {error && (
+          <FormError id={`${id}-error`} className=''>
+            Unsupported file type. Please upload a PNG or JPEG
+          </FormError>
+        )}
       </div>
 
       <input

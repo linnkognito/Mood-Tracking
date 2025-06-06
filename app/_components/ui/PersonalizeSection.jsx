@@ -1,8 +1,9 @@
 import Form from './Form';
 import FormCardSection from './FormCardSection';
 import FormRow from './FormRow';
-import { InputFile, InputText } from './InputText';
 import Button from './Button';
+import InputFile from './InputFile';
+import InputText from './InputText';
 
 function PersonalizeSection() {
   return (

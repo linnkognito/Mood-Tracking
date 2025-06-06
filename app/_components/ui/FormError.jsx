@@ -1,12 +1,12 @@
 import Image from 'next/image';
 
-function FormError({ children, id }) {
+function FormError({ children, id, className = '' }) {
   if (!id) return null;
 
   return (
     <span
       id={id}
-      className='flex items-center gap-075 text-preset-9 text-red-700'
+      className={`flex items-center gap-075 w-fit mt-100 text-preset-9 text-red-700 ${className}`}
     >
       <Image
         src='/icons/info-circle.svg'

@@ -1,7 +1,7 @@
 function Form({ children, className = '', ...props }) {
   return (
     <form
-      area-lebelledby='form-heading'
+      aria-labelledby='form-heading'
       className={`w-full ${className}`}
       {...props}
     >
