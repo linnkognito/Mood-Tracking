@@ -5,7 +5,7 @@ import Button from './Button';
 import InputFile from './InputFile';
 import InputText from './InputText';
 
-function PersonalizeSection() {
+function PersonalizeSection({ user = null }) {
   return (
     <FormCardSection
       heading='Personalize your experience'
@@ -13,11 +13,20 @@ function PersonalizeSection() {
     >
       <Form className='py-400'>
         <FormRow label='Name' htmlFor='name' className='mb-300'>
-          <InputText type='text' id='name' placeholder='Jane Appleseed' />
+          <InputText
+            type='text'
+            id='name'
+            placeholder={user?.name || 'Jane Appleseed'}
+          />
         </FormRow>
 
         <FormRow htmlFor='profile-picture'>
-          <InputFile type='file' id='profile-picture' label='Upload Image' />
+          <InputFile
+            type='file'
+            id='profile-picture'
+            label='Upload Image'
+            image={user?.image || null}
+          />
         </FormRow>
 
         <Button type='submit' className='mt-400'>

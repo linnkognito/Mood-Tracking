@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { backgroundStyles as styles } from '@/app/_lib/moodStyles';
 import Heading from '../text/Heading';
 import Paragraph from '../text/Paragraph';
 
@@ -7,27 +8,8 @@ function CardAverage({ average = null, className = '' }) {
 
   const { averageType, averageMood, averageMoodDescription, mood } = average;
 
-  const styles = {
-    blank: 'bg-blue-100',
-    happy: 'bg-green-300',
-    veryHappy: 'bg-amber-600',
-    neutral: 'bg-blue-300',
-    sleep: 'bg-blue-600',
-    sad: 'bg-indigo-200',
-    verySad: 'bg-red-300',
-  };
-
   return (
-    <div className={`relative w-full h-[150px] ${className}`}>
-      {/* Background image */}
-      <Image
-        src='/pattern.svg'
-        alt='Background'
-        width={61}
-        height={150}
-        className='absolute right-0 object-cover'
-      />
-
+    <div className={`flex flex-col w-full h-1/2 ${className}`}>
       {/* Content */}
       <div className='flex items-center gap-050 mb-150'>
         <Heading tag='h2' preset='5' className='text-neutral-900'>
@@ -37,8 +19,17 @@ function CardAverage({ average = null, className = '' }) {
       </div>
 
       <div
-        className={`flex flex-col justify-center gap-150 p-250 rounded-16 ${styles[mood]}`}
+        className={`grow relative flex flex-col justify-center gap-150 min-h-[160px] p-250 rounded-16 ${styles[mood]}`}
       >
+        {/* Background image */}
+        <Image
+          src='/pattern.svg'
+          alt='Background'
+          width={65}
+          height={160}
+          className='absolute top-0 right-0 object-cover'
+        />
+
         <Heading tag='h3' preset='4'>
           {averageMood}
         </Heading>

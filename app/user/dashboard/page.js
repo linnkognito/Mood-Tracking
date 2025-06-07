@@ -21,7 +21,7 @@ function Page() {
     <main className='flex flex-col justify-center gap-600 pt-500 px-200 md:px-400 w-full max-w-site mx-auto'>
       <Header user={true} />
 
-      <article className='grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-400 pb-1000'>
+      <article className='grid grid-cols-1 lg:grid-cols-[auto_auto] xl:grid-cols-[1fr_2fr] gap-400 pb-1000'>
         <Container tag='section' className='flex flex-col gap-300 p-300'>
           <CardAverage average={averageTest} />
           <CardAverage average={averageTest2} />

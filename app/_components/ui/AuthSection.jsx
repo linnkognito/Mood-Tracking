@@ -19,7 +19,10 @@ function AuthSection({ type = 'signup' }) {
 
       <Paragraph className='mt-250 text-center text-neutral-600'>
         {signup ? 'Already got an account?' : 'Haven’t got an account?'}
-        <Link href='/' className='text-link'>
+        <Link
+          href={signup ? '/auth/login' : '/auth/signup'}
+          className='text-link'
+        >
           {signup ? 'Log in.' : 'Sign up.'}
         </Link>
       </Paragraph>

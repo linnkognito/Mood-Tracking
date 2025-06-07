@@ -3,8 +3,8 @@ import FormError from './FormError';
 function InputText({
   type = 'text',
   id,
-  className = '',
   error = null,
+  className = '',
   ...props
 }) {
   return (

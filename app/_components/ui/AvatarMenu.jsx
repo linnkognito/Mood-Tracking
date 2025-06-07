@@ -1,12 +1,10 @@
 import Image from 'next/image';
 
-function AvatarMenu({ user }) {
-  // const { avatar } = user;
-
+function AvatarMenu({ user = null }) {
   return (
     <div className='flex items-center gap-125'>
       <Image
-        src={user || '/avatar-default.svg'}
+        src={user?.image || '/avatar-default.svg'}
         alt='avatar'
         width={40}
         height={40}

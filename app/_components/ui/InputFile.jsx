@@ -7,14 +7,14 @@ import FormError from './FormError';
 function InputFile({
   id,
   label = null,
-  avatar = false,
+  image = false,
   error = true,
   ...props
 }) {
   return (
     <div className='flex items-start cursor-pointer'>
       <Image
-        src={avatar || '/avatar-default.svg'}
+        src={image || '/avatar-default.svg'}
         alt='Profile picture'
         width={64}
         height={64}
