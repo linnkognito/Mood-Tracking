@@ -75,6 +75,12 @@
   --tracking-2: -2px;
 }
 
+::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
 @layer base {
   html {
     font-family: var(--font-sans);
@@ -87,6 +93,11 @@
 }
 
 @layer components {
+  .scrollbar-trends {
+    scrollbar-color: var(--color-blue-200) transparent;
+    scrollbar-width: thin;
+  }
+
   .text-preset-1 {
     @apply text-300 leading-120 tracking-2 font-bold md:text-500 md:leading-140;
   }
@@ -162,3 +173,5 @@
     box-shadow: 0px 5px 8px rgba(33, 33, 77, 0.16);
   }
 }
+
+@plugin 'tailwind-scrollbar';

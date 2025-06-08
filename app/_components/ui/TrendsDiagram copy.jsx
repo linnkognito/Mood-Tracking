@@ -1,4 +1,6 @@
 import { moodTestData } from '@/app/_lib/moodTestData';
+import { getRowStart } from '@/app/_lib/moodStyles';
+
 import { format } from 'date-fns';
 import Image from 'next/image';
 import Paragraph from '../text/Paragraph';
@@ -10,14 +12,11 @@ function TrendsDiagram() {
   const date = format(new Date(), 'dd');
 
   return (
-    <div className='flex items-start gap-150 md:gap-200 w-full min-h-[312px]'>
+    <div className='flex items-start gap-150 md:gap-200 w-full'>
       {/* Hours column */}
       <div className='grid grid-cols-1 grid-rows-5 gap-500 min-w-[68px]'>
         {hours.map((h) => (
-          <div
-            key={`trends-hour-${h}`}
-            className='flex items-center text-neutral-600'
-          >
+          <div className='flex items-center text-neutral-600'>
             <Image
               src='/icons/sleep.svg'
               alt='Sleep icon'
@@ -30,8 +29,8 @@ function TrendsDiagram() {
         ))}
       </div>
 
-      {/* Diagram Wrapper -------------- */}
-      <div className='relative flex flex-col min-h-[312px] pt-050 overflow-x-auto overflow-y-hidden scrollbar-trends'>
+      {/* Diagram -------------- */}
+      <div className='relative w-full max-w-[calc(var(--spacing-500) * 11 + var(--spacing-150) * 10)] pt-050 overflow-x-auto overflow-y-hidden'>
         {/* Rows (decorative lines only) */}
         <div className='absolute inset-0 top-075 z-0 flex flex-col gap-500'>
           {[...Array(5)].map((_, i) => (
@@ -42,23 +41,25 @@ function TrendsDiagram() {
           ))}
         </div>
 
-        <div className='flex-grow flex flex-col justify-end gap-150 md:gap-200 pt-200'>
+        <div className='grid grid-cols-[repeat(11,var(--spacing-500))] grid-rows-[repeat(6,var(--spacing-500))] gap-150 md:gap-200 pt-200'>
           {/* Mood Pillars */}
           {moodTestData.map((moodData) => (
             <TrendsPillar
-              key={`trendPillar-${moodData.id}`}
+              key={moodData.id}
               moodData={moodData}
+              className={`row-start-5 row-end-6`}
             />
           ))}
-        </div>
 
-        {/* Dates */}
-        <div className='flex gap-150 md:gap-200 pt-100 max-sm:pb-125'>
+          {/* Empty row */}
+          {/* <div className='row-start-5 col-span-11' /> */}
+
+          {/* Last row: Dates */}
           {[...Array(11)].map((_, i) => {
             return (
               <div
                 key={`trends-date-${i}`}
-                className='row-start-6 flex flex-col items-center gap-075 w-500'
+                className='row-start-6 flex flex-col items-center gap-075 w-500 border'
               >
                 <Paragraph preset='9'>{month}</Paragraph>
                 <Paragraph preset='8'>{date}</Paragraph>
