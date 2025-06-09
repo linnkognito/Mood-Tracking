@@ -2,14 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Paragraph from '../text/Paragraph';
 
-function ProfilePopover({ user = null }) {
+function ProfilePopover({ user = null, ...props }) {
   if (!user) return null;
   const { name, email } = user;
 
   return (
     <div
-      variant='popover'
       className='absolute top-600 right-0 w-full sm:w-[200px] px-[18px] py-150 bg-neutral-0 rounded-8 shadow-popover'
+      {...props}
     >
       <div className='flex flex-col pb-100 mb-100 border-b border-blue-100'>
         <Paragraph preset='6'>{name}</Paragraph>
@@ -29,6 +29,7 @@ function ProfilePopover({ user = null }) {
           />
           <span>Settings</span>
         </Link>
+
         <Link href='/auth/logout' className='flex gap-125'>
           <Image src='/icons/logout.svg' alt='Logout' width={16} height={16} />
           <span>Logout</span>

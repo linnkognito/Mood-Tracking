@@ -93,6 +93,10 @@
 }
 
 @layer components {
+  .bg-light-gradient {
+    background: var(--bg-light-gradient);
+  }
+
   .scrollbar-trends {
     scrollbar-color: var(--color-blue-200) transparent;
     scrollbar-width: thin;

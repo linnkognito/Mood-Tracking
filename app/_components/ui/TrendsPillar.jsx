@@ -1,4 +1,8 @@
-import { icons, backgroundStyles, pillarHeight } from '@/app/_lib/moodStyles';
+import {
+  moodStyles,
+  backgroundStyles,
+  pillarHeight,
+} from '@/app/_lib/moodStyles';
 import Image from 'next/image';
 
 function TrendsPillar({ moodData = null, className = '' }) {
@@ -11,7 +15,7 @@ function TrendsPillar({ moodData = null, className = '' }) {
       } ${pillarHeight[moodData.sleep_time]} ${className}`}
     >
       <Image
-        src={icons[moodData.mood]}
+        src={moodStyles[moodData.mood_info.mood_type].icon.icon}
         alt='Mood Pillars'
         width={30}
         height={30}

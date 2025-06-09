@@ -2,8 +2,8 @@ import Logo from '@/app/_components/layout/Logo';
 import Navbar from './Navbar';
 import Heading from '../text/Heading';
 import DateCurrent from '../ui/DateCurrent';
-import Button from '../ui/Button';
 import ProfilePopover from '../ui/ProfilePopover';
+import LogMood from '../ui/LogMood';
 
 function Header({ user = null }) {
   return !user ? (
@@ -24,9 +24,8 @@ function Header({ user = null }) {
         <DateCurrent />
       </div>
 
-      <Button className='w-fit min-w-[226px] mx-auto p-medium'>
-        Log today's mood
-      </Button>
+      {/* Log Mood Button (triggers modal) */}
+      <LogMood />
 
       <ProfilePopover />
     </header>

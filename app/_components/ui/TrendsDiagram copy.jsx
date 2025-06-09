@@ -1,5 +1,4 @@
 import { moodTestData } from '@/app/_lib/moodTestData';
-import { getRowStart } from '@/app/_lib/moodStyles';
 
 import { format } from 'date-fns';
 import Image from 'next/image';

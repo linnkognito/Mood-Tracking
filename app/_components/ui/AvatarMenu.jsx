@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import ProfilePopoverDropdown from './ProfilePopoverDropdown';
 
-function AvatarMenu({ user = null }) {
-  if (!user) return null;
-
+function AvatarMenu({ user = { name: 'Linn', email: 'linn@gmail.com' } }) {
   return (
     <ProfilePopoverDropdown user={user}>
       <div className='flex items-center gap-125 cursor-pointer'>

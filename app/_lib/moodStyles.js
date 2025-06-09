@@ -1,19 +1,67 @@
+export const moodStyles = {
+  blank: { background: 'bg-blue-100' },
+  veryHappy: {
+    background: 'bg-amber-600',
+    icon: {
+      icon: '/icons/very-happy.svg',
+      alt: 'Very Happy',
+      color: 'text-amber-600',
+    },
+  },
+  happy: {
+    background: 'bg-green-300',
+    icon: {
+      icon: '/icons/happy.svg',
+      alt: 'Happy',
+      color: 'text-green-300',
+    },
+  },
+  neutral: {
+    background: 'bg-blue-300',
+    icon: {
+      icon: '/icons/neutral.svg',
+      alt: 'Neutral',
+      color: 'text-blue-300',
+    },
+  },
+  sleep: {
+    background: 'bg-blue-600',
+    icon: {
+      icon: '/icons/sleep.svg',
+      alt: 'Sleep',
+      color: 'text-blue-600',
+    },
+  },
+  sad: {
+    background: 'bg-indigo-200',
+    icon: {
+      icon: '/icons/sad.svg',
+      alt: 'Sad',
+      color: 'text-indigo-200',
+    },
+  },
+  verySad: {
+    background: 'bg-red-300',
+    icon: {
+      icon: '/icons/very-sad.svg',
+      alt: 'Very Sad',
+      color: 'text-red-300',
+    },
+  },
+};
 export const backgroundStyles = {
   blank: 'bg-blue-100',
-  happy: 'bg-green-300',
   veryHappy: 'bg-amber-600',
+  happy: 'bg-green-300',
   neutral: 'bg-blue-300',
   sleep: 'bg-blue-600',
-  sad: 'bg-indigo-200',
-  verySad: 'bg-red-300',
 };
 export const icons = {
   1: '/icons/happy.svg',
   2: '/icons/very-happy.svg',
   3: '/icons/neutral.svg',
-  4: '/icons/sleep.svg',
-  5: '/icons/sad.svg',
-  6: '/icons/very-sad.svg',
+  4: '/icons/sad.svg',
+  5: '/icons/very-sad.svg',
 };
 export const pillarHeight = {
   0: 'h-[52px]',

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { backgroundStyles as styles } from '@/app/_lib/moodStyles';
+import { moodStyles as styles } from '@/app/_lib/moodStyles';
 import Heading from '../text/Heading';
 import Paragraph from '../text/Paragraph';
 
@@ -19,7 +19,7 @@ function CardAverage({ average = null, className = '' }) {
       </div>
 
       <div
-        className={`grow relative flex flex-col justify-center gap-150 min-h-[160px] p-250 rounded-16 ${styles[mood]}`}
+        className={`grow relative flex flex-col justify-center gap-150 min-h-[160px] p-250 rounded-16 ${styles[mood].background}`}
       >
         {/* Background image */}
         <Image
