@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import useDismiss from '@/app/_hooks/useDismiss';
+import useDismissEscape from '@/app/_hooks/useDismissEscape';
 
 import Button from './Button';
 import Overlay from './Overlay';
@@ -9,14 +9,15 @@ import LogMoodModal from './LogMoodModal';
 import LogMoodForm from './LogMoodForm';
 import LogMoodFormMood from './LogMoodFormMood';
 import LogMoodFormFeelings from './LogMoodFormFeelings';
+import LogMoodFormNote from './LogMoodFormNote';
 
 function LogMood() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [step, setStep] = useState(1);
   const modalRef = useRef(null);
 
-  // Close modal on Esc or click outside
-  useDismiss(modalRef, isOpenModal, () => setIsOpenModal(false));
+  // Close modal on Esc
+  useDismissEscape(isOpenModal, () => setIsOpenModal(false));
 
   // Close modal on close button (resets step)
   const handleClose = () => {
@@ -41,20 +42,15 @@ function LogMood() {
       form: <LogMoodFormMood />,
     },
     {
-      id: 'form-mood',
+      id: 'form-feelings',
       heading: 'How did you feel?',
       description: `Select up to three tags:`,
       form: <LogMoodFormFeelings />,
     },
     {
-      id: 'form-mood',
-      heading: 'How was your mood today?',
-      form: <LogMoodFormMood />,
-    },
-    {
-      id: 'form-mood',
-      heading: 'How was your mood today?',
-      form: <LogMoodFormMood />,
+      id: 'form-note',
+      heading: 'Write about your day...',
+      form: <LogMoodFormNote />,
     },
   ];
 
@@ -68,7 +64,7 @@ function LogMood() {
       </Button>
 
       {isOpenModal && (
-        <Overlay>
+        <Overlay isOpen={isOpenModal}>
           <LogMoodModal
             ref={modalRef}
             step={step}

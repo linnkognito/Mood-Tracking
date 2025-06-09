@@ -27,7 +27,7 @@ function LogMoodFormFeelings() {
   // If multiple checkboxes share the same name, all their values will be submitted together (like an array).
 
   return (
-    <div className='flex flex-wrap gap-x-200 gap-y-150 max-w-full'>
+    <div className='flex flex-wrap gap-x-200 gap-y-150 w-full'>
       {feelings.map((feeling) => (
         <InputCheckbox
           key={feeling.value}

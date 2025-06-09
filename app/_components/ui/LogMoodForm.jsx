@@ -8,7 +8,7 @@ function LogMoodForm({ form = null }) {
   return (
     <div className='w-full'>
       <div className='mb-400'>
-        <Heading id='form-heading' tag='h2' preset='3'>
+        <Heading id='form-heading' tag='h2' preset='3' className='pb-050'>
           {form.heading}
         </Heading>
 

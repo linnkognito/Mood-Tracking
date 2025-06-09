@@ -9,7 +9,7 @@ function LogMoodModal({ children, ref, step, onClose, handleContinue }) {
     <section
       ref={ref}
       aria-labelledby='logmood-heading'
-      className='relative flex flex-col gap-400 w-[600px] min-w-full px-500 py-600 bg-light-gradient rounded-16 border'
+      className='relative flex flex-col gap-400 w-full max-w-[600px] h-fit px-500 py-600 bg-light-gradient rounded-16 border'
     >
       <ButtonCloseModal onClose={onClose} />
 
