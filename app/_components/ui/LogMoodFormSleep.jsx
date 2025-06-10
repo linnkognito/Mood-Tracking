@@ -3,10 +3,14 @@ import InputBullet from './InputBullet';
 
 function LogMoodFormSleep() {
   return (
-    <div>
+    <div className='flex flex-col gap-150'>
       {hoursOfSleep.map((hour) => (
         <div key={hour}>
-          <InputBullet key={hour} label={hour} name='sleep-radio-buttons' />
+          <InputBullet
+            key={hour}
+            label={`${hour} hours`}
+            name='sleep-radio-buttons'
+          />
         </div>
       ))}
     </div>
