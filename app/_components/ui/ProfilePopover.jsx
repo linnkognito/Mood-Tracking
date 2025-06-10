@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import Paragraph from '../text/Paragraph';
@@ -7,8 +9,12 @@ function ProfilePopover({ user = null, ...props }) {
   const { name, email } = user;
 
   return (
-    <div
-      className='absolute top-600 right-0 w-full sm:w-[200px] px-[18px] py-150 bg-neutral-0 rounded-8 shadow-popover'
+    <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.8, opacity: 0 }}
+      transition={{ duration: 0.1, ease: 'easeOut' }}
+      className='absolute top-600 right-0 w-full sm:w-[200px] px-[18px] py-150 bg-neutral-0 rounded-8 shadow-popover origin-top'
       {...props}
     >
       <div className='flex flex-col pb-100 mb-100 border-b border-blue-100'>
@@ -35,7 +41,7 @@ function ProfilePopover({ user = null, ...props }) {
           <span>Logout</span>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

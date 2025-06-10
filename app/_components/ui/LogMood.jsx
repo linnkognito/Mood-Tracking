@@ -10,6 +10,7 @@ import LogMoodForm from './LogMoodForm';
 import LogMoodFormMood from './LogMoodFormMood';
 import LogMoodFormFeelings from './LogMoodFormFeelings';
 import LogMoodFormNote from './LogMoodFormNote';
+import LogMoodFormSleep from './LogMoodFormSleep';
 
 function LogMood() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -52,6 +53,11 @@ function LogMood() {
       heading: 'Write about your day...',
       form: <LogMoodFormNote />,
     },
+    {
+      id: 'form-sleep',
+      heading: 'How many hours did you sleep last night?',
+      form: <LogMoodFormSleep />,
+    },
   ];
 
   return (
@@ -65,13 +71,12 @@ function LogMood() {
 
       {isOpenModal && (
         <Overlay isOpen={isOpenModal}>
-          <LogMoodModal
-            ref={modalRef}
-            step={step}
-            onClose={handleClose}
-            handleContinue={handleContinue}
-          >
+          <LogMoodModal ref={modalRef} step={step} onClose={handleClose}>
             <LogMoodForm form={logMoodForms[step - 1]} />
+
+            <Button onClick={handleContinue}>
+              {step === logMoodForms.length ? 'Submit' : 'Continue'}
+            </Button>
           </LogMoodModal>
         </Overlay>
       )}

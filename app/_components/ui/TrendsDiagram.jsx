@@ -1,11 +1,12 @@
 import { moodTestData } from '@/app/_lib/moodTestData';
+import { hoursOfSleep as hours } from '@/app/_lib/sleepData';
 import { format } from 'date-fns';
 import Image from 'next/image';
+
 import Paragraph from '../text/Paragraph';
 import TrendsPillar from './TrendsPillar';
 
 function TrendsDiagram() {
-  const hours = ['9+', '7-8', '5-6', '3-4', '0-2'];
   const month = format(new Date(), 'MMMM');
   const date = format(new Date(), 'dd');
 

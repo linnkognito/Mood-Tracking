@@ -1,10 +1,9 @@
 import Heading from '../text/Heading';
-import Button from './Button';
 
 import ButtonCloseModal from './ButtonCloseModal';
 import LogMoodProgressBar from './LogMoodProgressBar';
 
-function LogMoodModal({ children, ref, step, onClose, handleContinue }) {
+function LogMoodModal({ children, ref, step, onClose }) {
   return (
     <section
       ref={ref}
@@ -20,8 +19,6 @@ function LogMoodModal({ children, ref, step, onClose, handleContinue }) {
       <LogMoodProgressBar step={step} />
 
       {children}
-
-      <Button onClick={handleContinue}>Continue</Button>
     </section>
   );
 }
