@@ -15,7 +15,7 @@ function TrendsPillar({ moodData = null, className = '' }) {
       } ${pillarHeight[moodData.sleep_time]} ${className}`}
     >
       <Image
-        src={moodStyles[moodData.mood_info.mood_type].icon.icon}
+        src={moodStyles[moodData.mood_info.mood_type].icon.iconWhite}
         alt='Mood Pillars'
         width={30}
         height={30}

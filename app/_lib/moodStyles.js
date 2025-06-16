@@ -4,6 +4,7 @@ export const moodStyles = {
     background: 'bg-amber-600',
     icon: {
       icon: '/icons/very-happy.svg',
+      iconWhite: '/icons/very-happy-white.svg',
       alt: 'Very Happy',
       color: 'text-amber-600',
     },
@@ -12,6 +13,7 @@ export const moodStyles = {
     background: 'bg-green-300',
     icon: {
       icon: '/icons/happy.svg',
+      iconWhite: '/icons/happy-white.svg',
       alt: 'Happy',
       color: 'text-green-300',
     },
@@ -20,6 +22,7 @@ export const moodStyles = {
     background: 'bg-blue-300',
     icon: {
       icon: '/icons/neutral.svg',
+      iconWhite: '/icons/neutral-white.svg',
       alt: 'Neutral',
       color: 'text-blue-300',
     },
@@ -28,6 +31,7 @@ export const moodStyles = {
     background: 'bg-blue-600',
     icon: {
       icon: '/icons/sleep.svg',
+      iconWhite: '/icons/sleep-white.svg',
       alt: 'Sleep',
       color: 'text-blue-600',
     },
@@ -36,6 +40,7 @@ export const moodStyles = {
     background: 'bg-indigo-200',
     icon: {
       icon: '/icons/sad.svg',
+      iconWhite: '/icons/sad-white.svg',
       alt: 'Sad',
       color: 'text-indigo-200',
     },
@@ -44,6 +49,7 @@ export const moodStyles = {
     background: 'bg-red-300',
     icon: {
       icon: '/icons/very-sad.svg',
+      iconWhite: '/icons/very-sad-white.svg',
       alt: 'Very Sad',
       color: 'text-red-300',
     },
@@ -63,6 +69,7 @@ export const icons = {
   4: '/icons/sad.svg',
   5: '/icons/very-sad.svg',
 };
+
 export const pillarHeight = {
   0: 'h-[52px]',
   1: 'h-[52px]',
