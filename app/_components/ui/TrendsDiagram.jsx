@@ -1,15 +1,11 @@
 import { moodTestData } from '@/app/_lib/moodTestData';
 import { hoursOfSleep as hours } from '@/app/_lib/sleepData';
-import { format } from 'date-fns';
+import { format, subDays } from 'date-fns';
 import Image from 'next/image';
-
 import Paragraph from '../text/Paragraph';
 import TrendsPillar from './TrendsPillar';
 
 function TrendsDiagram() {
-  const month = format(new Date(), 'MMMM');
-  const date = format(new Date(), 'dd');
-
   return (
     <div className='flex items-start gap-150 md:gap-200 w-full min-h-[312px]'>
       {/* Hours column */}
@@ -56,13 +52,14 @@ function TrendsDiagram() {
         {/* Dates */}
         <div className='flex gap-150 md:gap-200 pt-100 max-sm:pb-125'>
           {[...Array(11)].map((_, i) => {
+            const day = subDays(new Date(), 11 - i);
             return (
               <div
                 key={`trends-date-${i}`}
                 className='row-start-6 flex flex-col items-center gap-075 w-500'
               >
-                <Paragraph preset='9'>{month}</Paragraph>
-                <Paragraph preset='8'>{date}</Paragraph>
+                <Paragraph preset='9'>{format(day, 'MMM')}</Paragraph>
+                <Paragraph preset='8'>{format(day, 'dd')}</Paragraph>
               </div>
             );
           })}
