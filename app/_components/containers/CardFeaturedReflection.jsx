@@ -1,10 +1,7 @@
 import Paragraph from '../text/Paragraph';
 import CardFeatured from './CardFeatured';
 
-function CardFeaturedReflection({
-  tags,
-  reflection = 'Woke up early and finally tackled a big project!',
-}) {
+function CardFeaturedReflection({ tags, reflection = '' }) {
   return (
     <CardFeatured
       heading='Reflection of the day'

@@ -1,6 +1,7 @@
 import Label from '@/app/_components/ui/Label';
+import FormError from '@/app/_components/ui/FormError';
 
-function FormRow({ children, label, htmlFor, className = '' }) {
+function FormRow({ children, label, htmlFor, className = '', errors = {} }) {
   return (
     <div className={`flex flex-col w-full ${className}`}>
       {label && (
@@ -10,6 +11,8 @@ function FormRow({ children, label, htmlFor, className = '' }) {
       )}
 
       {children}
+
+      {errors && <FormError>{errors.message}</FormError>}
     </div>
   );
 }

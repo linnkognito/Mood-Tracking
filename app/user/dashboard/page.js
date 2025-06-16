@@ -19,6 +19,14 @@ function Page() {
     averageMoodDescription: 'Track 5 nights to view average sleep.',
     mood: 'blank',
   };
+  const reflectionTest = {
+    tags: ['Grateful', 'Optimistic'],
+    reflection: 'Woke up early and finally tackled a big project!',
+  };
+
+  //PLACEHOLDER
+  // Request UserMood data
+  // const { feelings, sleep_time: sleep } = userMood;
 
   return (
     <main className='flex flex-col justify-center gap-600 pt-500 px-200 md:px-400 w-full max-w-site mx-auto'>
@@ -31,15 +39,18 @@ function Page() {
 
           <div className='flex flex-col gap-250 w-full md:w-2/5'>
             <CardFeaturedSleep hours={8} />
-            <CardFeaturedReflection tags={['sleep', 'good']} />
+            <CardFeaturedReflection
+              reflection={reflectionTest.reflection}
+              tags={reflectionTest.tags}
+            />
           </div>
         </section>
 
         {/* Section 2 (Average & Trends) */}
         <section className='flex max-lg:flex-col gap-400 w-full'>
           <Container tag='section' className='flex flex-col gap-300 p-300'>
-            <CardAverage average={averageTest} />
-            <CardAverage average={averageTest2} />
+            {/* <CardAverage data={feelings} /> */}
+            {/* <CardAverage data={sleep} /> */}
           </Container>
 
           <Container tag='section' className='max-w-full p-400'>
