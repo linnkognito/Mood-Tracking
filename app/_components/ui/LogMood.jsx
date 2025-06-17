@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import useDismissEscape from '@/app/_hooks/useDismissEscape';
-
+import { useForm } from 'react-hook-form';
 import Button from './Button';
 import Overlay from './Overlay';
 import LogMoodModal from './LogMoodModal';
@@ -15,26 +15,52 @@ import LogMoodFormSleep from './LogMoodFormSleep';
 function LogMood() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [step, setStep] = useState(1);
+  const methods = useForm({
+    mode: 'onSubmit',
+    defaultValues: {
+      feelings: [],
+    },
+  });
   const modalRef = useRef(null);
+  const isFinalStep = step === logMoodForms.length;
 
+  function onSubmit(data) {
+    /* Example data:
+    {
+  "user": 2,
+  "mood": 3,
+  "diary_entry": "I'm tired",
+  "sleep_time": 7,
+  "feelings": [
+    3,
+    4
+  ]
+}
+  */
+    // 1. Send data to API
+    // 2. Include user token
+
+    handleClose();
+  }
   // Close modal on Esc
   useDismissEscape(isOpenModal, () => setIsOpenModal(false));
-
   // Close modal on close button (resets step)
-  const handleClose = () => {
+  function handleClose() {
     setIsOpenModal(false);
     setStep(1);
-  };
+    methods.reset();
+  }
 
-  const handleContinue = () => {
+  // Continue to next step (or submit if last step)
+  function handleContinue() {
     if (step === logMoodForms.length) {
-      // final step --> save data
+      methods.handleSubmit(onSubmit)();
       setIsOpenModal(false);
       setStep(1);
     } else {
       setStep(step + 1);
     }
-  };
+  }
 
   const logMoodForms = [
     {
@@ -72,11 +98,16 @@ function LogMood() {
       {isOpenModal && (
         <Overlay isOpen={isOpenModal}>
           <LogMoodModal ref={modalRef} step={step} onClose={handleClose}>
-            <LogMoodForm form={logMoodForms[step - 1]} />
+            <FormProvider {...methods}>
+              <LogMoodForm form={logMoodForms[step - 1]} />
 
-            <Button onClick={handleContinue}>
-              {step === logMoodForms.length ? 'Submit' : 'Continue'}
-            </Button>
+              <Button
+                type={isFinalStep ? 'submit' : 'button'}
+                onClick={handleContinue}
+              >
+                {isFinalStep ? 'Submit' : 'Continue'}
+              </Button>
+            </FormProvider>
           </LogMoodModal>
         </Overlay>
       )}

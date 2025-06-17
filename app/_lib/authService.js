@@ -1,11 +1,27 @@
 import { createUser, loginUser } from '../_api/usersApi';
 
 export async function handleSignup(userData) {
-  if (!userData) throw new Error('No user data provided');
   return await createUser(userData);
 }
 
 export async function handleLogin(credentials) {
-  if (!credentials) throw new Error('No credentials provided');
-  return await loginUser(credentials);
+  const res = await loginUser(credentials);
+  localStorage.setItem('auth-token', res.token);
+
+  const safeUserData = {
+    id: res.user.id,
+    name: res.user.name,
+    email: res.user.email,
+    image: res.user.image,
+  };
+
+  localStorage.setItem('user', JSON.stringify(safeUserData));
+
+  return safeUserData;
+}
+
+export async function handleLogout() {
+  localStorage.removeItem('auth-token');
+  localStorage.removeItem('user');
+  router.push('/auth/login');
 }

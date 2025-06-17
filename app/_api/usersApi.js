@@ -79,18 +79,25 @@ export async function loginUser(credentials) {
   return data;
 }
 
-export async function checkIfUserExists(email) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/check?email=${email}`
-  );
-
-  if (res.ok) return true;
-  if (res.status === 404) return false;
-  throw new Error('Error checking user');
-}
-
 // PATCH //
-export async function updateUser() {}
+export async function updateUser(userData) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    console.error('Failed to update user:', data?.message || res.status);
+    throw new Error(data?.message || 'Failed to update user');
+  }
+
+  return data;
+}
 
 // DELETE //
 export async function deleteUser() {}

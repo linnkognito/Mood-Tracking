@@ -1,5 +1,5 @@
 import { moodTestData } from '@/app/_lib/moodTestData';
-import { hoursOfSleep as hours } from '@/app/_lib/sleepData';
+import { sleepTime } from '@/app/_lib/sleepData';
 import { format, subDays } from 'date-fns';
 import Image from 'next/image';
 import Paragraph from '../text/Paragraph';
@@ -10,9 +10,9 @@ function TrendsDiagram() {
     <div className='flex items-start gap-150 md:gap-200 w-full min-h-[312px]'>
       {/* Hours column */}
       <div className='grid grid-cols-1 grid-rows-5 gap-500 min-w-[68px]'>
-        {hours.map((h) => (
+        {sleepTime.map((hours) => (
           <div
-            key={`trends-hour-${h}`}
+            key={`trends-hour-${hours.id}`}
             className='flex items-center text-neutral-600'
           >
             <Image
@@ -22,7 +22,7 @@ function TrendsDiagram() {
               height={15}
               className='pr-075'
             />
-            <Paragraph preset='9'>{`${h} hours`}</Paragraph>
+            <Paragraph preset='9'>{`${hours.label} hours`}</Paragraph>
           </div>
         ))}
       </div>

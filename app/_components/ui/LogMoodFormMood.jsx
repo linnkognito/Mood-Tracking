@@ -1,24 +1,42 @@
+'use client';
+
+import { useFormContext } from 'react-hook-form';
 import { icons } from '@/app/_lib/moodStyles';
 import InputBullet from './InputBullet';
+import FormError from './FormError';
 
 function LogMoodFormMood() {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
   const moods = [
-    { id: 'veryHappy', label: 'Very Happy' },
-    { id: 'happy', label: 'Happy' },
-    { id: 'neutral', label: 'Neutral' },
-    { id: 'sad', label: 'Sad' },
-    { id: 'verySad', label: 'Very Sad' },
+    { id: 1, label: 'Very Happy' },
+    { id: 2, label: 'Happy' },
+    { id: 3, label: 'Neutral' },
+    { id: 4, label: 'Sad' },
+    { id: 5, label: 'Very Sad' },
   ];
 
   return (
     <div className='flex flex-col gap-150'>
-      {moods.map((mood, i) => (
+      {moods.map((mood) => (
         <InputBullet
           key={mood.id}
           label={mood.label}
-          icon={{ icon: icons[i + 1], alt: mood.label }}
+          icon={{ icon: icons[mood.id], alt: mood.label }}
+          {...register('mood', {
+            validate: (value) => {
+              if (!value) {
+                return 'Please select a mood before continuing.';
+              }
+            },
+          })}
         />
       ))}
+
+      {errors.mood && <FormError id='mood'>{errors.mood.message}</FormError>}
     </div>
   );
 }

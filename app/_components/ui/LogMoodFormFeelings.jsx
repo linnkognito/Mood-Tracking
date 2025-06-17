@@ -1,6 +1,15 @@
+'use client';
+
+import { useFormContext } from 'react-hook-form';
 import InputCheckbox from './InputCheckbox';
+import FormError from './FormError';
 
 function LogMoodFormFeelings() {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
   const feelings = [
     { label: 'Joyful', value: 'joyful' },
     { label: 'Down', value: 'down' },
@@ -34,8 +43,22 @@ function LogMoodFormFeelings() {
           label={feeling.label}
           name='feelings'
           value={feeling.value}
+          {...register('feelings', {
+            validate: (value) => {
+              if (!value.length) {
+                return 'Please select at least one tag.';
+              }
+              if (value.length > 3) {
+                return 'You can only select a maximum of 3 tags.';
+              }
+            },
+          })}
         />
       ))}
+
+      {errors.feelings && (
+        <FormError id='feelings'>{errors.feelings.message}</FormError>
+      )}
     </div>
   );
 }

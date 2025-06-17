@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { handleLogin } from '@/app/_lib/authService';
@@ -15,39 +14,26 @@ function AuthForm({ type = 'signup' }) {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm();
 
   async function onSubmit({ email, password }) {
     try {
-      const userExists = await checkIfUserExists(email);
-      // Signup
       if (type === 'signup') {
-        if (userExists) {
-          setAuthError('This email is already in use. Try logging in instead.');
-          return;
-        }
         sessionStorage.setItem(
           'onboarding-user',
           JSON.stringify({ email, password })
         );
-        router.push(`/auth/onboarding`);
+        router.push('/auth/onboarding');
         return;
       }
-      // Login
-      if (type === 'login') {
-        if (!userExists) {
-          setAuthError(
-            'This email does not belong to any account. Try signing up instead.'
-          );
-          return;
-        }
-        await handleLogin({ email, password });
-        router.push('/user/dashboard');
-        return;
-      }
+
+      const user = await handleLogin({ email, password });
+      if (user) router.push('/user/dashboard');
     } catch (err) {
-      console.error('Auth error:', err.message);
+      applyFieldErrors(err, setError, setAuthError);
+      console.error('Auth error:', err);
     }
   }
 
@@ -76,8 +62,8 @@ function AuthForm({ type = 'signup' }) {
           {...register('password', {
             required: 'Password is required',
             minLength: {
-              value: 6,
-              message: 'Password must be at least 6 characters',
+              value: Number(process.env.NEXT_PUBLIC_MIN_PASSWORD_LENGTH) || 3,
+              message: `Password must be at least ${MIN_PASSWORD_LENGTH} characters`,
             },
           })}
           error={errors.password?.message}

@@ -1,11 +1,15 @@
-import { motion } from 'framer-motion';
+'use client';
 
+import { motion } from 'framer-motion';
+import { handleLogout } from '@/app/_lib/authService';
 import Image from 'next/image';
 import Link from 'next/link';
 import Paragraph from '../text/Paragraph';
 
-function ProfilePopover({ user = null, ...props }) {
+function ProfilePopover({ ...props }) {
+  const user = JSON.parse(localStorage.getItem('user'));
   if (!user) return null;
+
   const { name, email } = user;
 
   return (
@@ -36,10 +40,14 @@ function ProfilePopover({ user = null, ...props }) {
           <span>Settings</span>
         </Link>
 
-        <Link href='/auth/logout' className='flex gap-125'>
+        <button
+          type='button'
+          className='flex gap-125 w-full cursor-pointer'
+          onClick={handleLogout}
+        >
           <Image src='/icons/logout.svg' alt='Logout' width={16} height={16} />
           <span>Logout</span>
-        </Link>
+        </button>
       </div>
     </motion.div>
   );
