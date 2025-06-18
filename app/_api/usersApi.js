@@ -72,8 +72,7 @@ export async function loginUser(credentials) {
   const data = await res.json();
 
   if (!res.ok) {
-    console.error('Login failed:', data?.message || res.status);
-    throw new Error(data?.message || 'Login failed');
+    throw { status: res.status, data };
   }
 
   return data;

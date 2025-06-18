@@ -1,29 +1,40 @@
 import Link from 'next/link';
-import AuthForm from '@/app/_components/ui/AuthForm';
+import AuthFormSignup from '@/app/_components/ui/AuthFormSignup';
+import AuthFormLogin from '@/app/_components/ui/AuthFormLogin';
 import Paragraph from '@/app/_components/text/Paragraph';
 import FormCardSection from './FormCardSection';
 
 function AuthSection({ type = 'signup' }) {
-  const signup = type === 'signup';
+  const data = {
+    signup: {
+      heading: 'Create an account',
+      description: 'Join or track your daily mood and sleep with ease.',
+      account: 'Already got an account?',
+      link: 'Log in.',
+      path: '/auth/login',
+      form: <AuthFormSignup />,
+    },
+    login: {
+      heading: 'Welcome back!',
+      description: 'Log in to continue tracking your mood and sleep.',
+      account: 'Haven’t got an account?',
+      link: 'Sign up.',
+      path: '/auth/signup',
+      form: <AuthFormLogin />,
+    },
+  };
 
   return (
     <FormCardSection
-      heading={signup ? 'Create an account' : 'Welcome back!'}
-      description={
-        signup
-          ? 'Join or track your daily mood and sleep with ease.'
-          : 'Log in to continue tracking your mood and sleep.'
-      }
+      heading={data[type].heading}
+      description={data[type].description}
     >
-      <AuthForm type={type} />
+      {data[type].form}
 
       <Paragraph className='mt-250 text-center text-neutral-600'>
-        {signup ? 'Already got an account?' : 'Haven’t got an account?'}
-        <Link
-          href={signup ? '/auth/login' : '/auth/signup'}
-          className='text-link'
-        >
-          {signup ? 'Log in.' : 'Sign up.'}
+        {data[type].account}
+        <Link href={data[type].path} className='text-link'>
+          {data[type].link}
         </Link>
       </Paragraph>
     </FormCardSection>

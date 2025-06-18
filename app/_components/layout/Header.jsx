@@ -5,8 +5,11 @@ import DateCurrent from '../ui/DateCurrent';
 import ProfilePopover from '../ui/ProfilePopover';
 import LogMood from '../ui/LogMood';
 
-function Header({ user = null }) {
-  return !user ? (
+function Header({ variant = 'default' }) {
+  //PLACEHOLDER --> user
+  const user = null;
+
+  return variant === 'auth' ? (
     <header>
       <Logo />
     </header>
