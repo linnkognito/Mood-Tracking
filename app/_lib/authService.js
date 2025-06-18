@@ -19,9 +19,3 @@ export async function handleLogin(credentials) {
 
   return safeUserData;
 }
-
-export async function handleLogout() {
-  localStorage.removeItem('auth-token');
-  localStorage.removeItem('user');
-  router.push('/auth/login');
-}

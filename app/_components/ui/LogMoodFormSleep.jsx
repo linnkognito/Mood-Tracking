@@ -1,18 +1,24 @@
-import { hoursOfSleep } from '@/app/_lib/sleepData';
+'use client';
+
 import { useFormContext } from 'react-hook-form';
+import { sleepTime } from '@/app/_lib/sleepData';
+import FormError from './FormError';
 import InputBullet from './InputBullet';
 
 function LogMoodFormSleep() {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className='flex flex-col gap-150'>
-      {hoursOfSleep.map((hour) => (
-        <div key={hour.id}>
+      {sleepTime.map((hours) => (
+        <div key={hours.id}>
           <InputBullet
-            label={`${hour.label} hours`}
+            label={`${hours.label} hours`}
             name='sleep_time'
-            value={hour.value}
+            value={hours.value}
             {...register('sleep_time', {
               validate: (value) => {
                 if (!value) {
@@ -23,6 +29,12 @@ function LogMoodFormSleep() {
           />
         </div>
       ))}
+
+      {errors.sleep_time && (
+        <FormError id='sleep_time' className='mb-150'>
+          {errors.sleep_time.message}
+        </FormError>
+      )}
     </div>
   );
 }

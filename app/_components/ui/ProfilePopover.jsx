@@ -1,16 +1,16 @@
-'use client';
-
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/_api/auth/[...nextauth]/route';
 import { motion } from 'framer-motion';
-import { handleLogout } from '@/app/_lib/authService';
 import Image from 'next/image';
 import Link from 'next/link';
 import Paragraph from '../text/Paragraph';
+import ServerSideRedirect from './ServerSideRedirect';
 
-function ProfilePopover({ ...props }) {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (!user) return null;
+async function ProfilePopover({ ...props }) {
+  const session = await getServerSession(authOptions);
 
-  const { name, email } = user;
+  if (!session?.user) return null;
+  const { name, email } = session.user;
 
   return (
     <motion.div
@@ -37,17 +37,23 @@ function ProfilePopover({ ...props }) {
             width={16}
             height={16}
           />
-          <span>Settings</span>
+          Settings
         </Link>
 
-        <button
-          type='button'
-          className='flex gap-125 w-full cursor-pointer'
-          onClick={handleLogout}
-        >
-          <Image src='/icons/logout.svg' alt='Logout' width={16} height={16} />
-          <span>Logout</span>
-        </button>
+        <form action='/api/auth/signout' method='POST'>
+          {/* Logout redirect: */}
+          <ServerSideRedirect path='/auth/login' />
+
+          <button type='submit' className='flex gap-125 w-full cursor-pointer'>
+            <Image
+              src='/icons/logout.svg'
+              alt='Logout'
+              width={16}
+              height={16}
+            />
+            Logout
+          </button>
+        </form>
       </div>
     </motion.div>
   );

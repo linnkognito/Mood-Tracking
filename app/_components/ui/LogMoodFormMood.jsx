@@ -27,16 +27,16 @@ function LogMoodFormMood() {
           label={mood.label}
           icon={{ icon: icons[mood.id], alt: mood.label }}
           {...register('mood', {
-            validate: (value) => {
-              if (!value) {
-                return 'Please select a mood before continuing.';
-              }
-            },
+            required: 'Please select a mood before continuing.',
           })}
         />
       ))}
 
-      {errors.mood && <FormError id='mood'>{errors.mood.message}</FormError>}
+      {errors.mood && (
+        <FormError id='mood' className='mb-150'>
+          {errors.mood.message}
+        </FormError>
+      )}
     </div>
   );
 }

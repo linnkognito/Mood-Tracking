@@ -18,7 +18,7 @@ function LogMoodModal({ children, ref, step, onClose }) {
 
       <LogMoodProgressBar step={step} />
 
-      {children}
+      <div>{children}</div>
     </section>
   );
 }

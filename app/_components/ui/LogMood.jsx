@@ -1,8 +1,8 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import useDismissEscape from '@/app/_hooks/useDismissEscape';
-import { useForm } from 'react-hook-form';
 import Button from './Button';
 import Overlay from './Overlay';
 import LogMoodModal from './LogMoodModal';
@@ -22,24 +22,10 @@ function LogMood() {
     },
   });
   const modalRef = useRef(null);
-  const isFinalStep = step === logMoodForms.length;
 
   function onSubmit(data) {
-    /* Example data:
-    {
-  "user": 2,
-  "mood": 3,
-  "diary_entry": "I'm tired",
-  "sleep_time": 7,
-  "feelings": [
-    3,
-    4
-  ]
-}
-  */
-    // 1. Send data to API
-    // 2. Include user token
-
+    const userToken = sessionStorage.getItem('token');
+    createMood(userToken, data);
     handleClose();
   }
   // Close modal on Esc
@@ -52,7 +38,11 @@ function LogMood() {
   }
 
   // Continue to next step (or submit if last step)
-  function handleContinue() {
+  async function handleContinue() {
+    const currentFields = logMoodForms[step - 1].fields;
+    const isValid = await methods.trigger(currentFields);
+    if (!isValid) return;
+
     if (step === logMoodForms.length) {
       methods.handleSubmit(onSubmit)();
       setIsOpenModal(false);
@@ -66,25 +56,31 @@ function LogMood() {
     {
       id: 'form-mood',
       heading: 'How was your mood today?',
+      fields: ['mood'],
       form: <LogMoodFormMood />,
     },
     {
       id: 'form-feelings',
       heading: 'How did you feel?',
       description: `Select up to three tags:`,
+      fields: ['feelings'],
       form: <LogMoodFormFeelings />,
     },
     {
       id: 'form-note',
       heading: 'Write about your day...',
+      fields: ['diary_entry'],
       form: <LogMoodFormNote />,
     },
     {
       id: 'form-sleep',
       heading: 'How many hours did you sleep last night?',
+      fields: ['sleep_time'],
       form: <LogMoodFormSleep />,
     },
   ];
+
+  const isFinalStep = step === logMoodForms.length;
 
   return (
     <>
@@ -103,6 +99,7 @@ function LogMood() {
 
               <Button
                 type={isFinalStep ? 'submit' : 'button'}
+                className='-mt-150'
                 onClick={handleContinue}
               >
                 {isFinalStep ? 'Submit' : 'Continue'}

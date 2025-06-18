@@ -42,7 +42,9 @@ function LogMoodFormNote() {
       </span>
 
       {errors.diary_entry && (
-        <FormError id='diary_entry'>{errors.diary_entry.message}</FormError>
+        <FormError id='diary_entry' className='mb-150'>
+          {errors.diary_entry.message}
+        </FormError>
       )}
     </div>
   );

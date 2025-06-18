@@ -40,8 +40,8 @@ function LogMoodFormFeelings() {
       {feelings.map((feeling) => (
         <InputCheckbox
           key={feeling.value}
-          label={feeling.label}
           name='feelings'
+          label={feeling.label}
           value={feeling.value}
           {...register('feelings', {
             validate: (value) => {
@@ -57,7 +57,9 @@ function LogMoodFormFeelings() {
       ))}
 
       {errors.feelings && (
-        <FormError id='feelings'>{errors.feelings.message}</FormError>
+        <FormError id='feelings' className='mb-150'>
+          {errors.feelings.message}
+        </FormError>
       )}
     </div>
   );

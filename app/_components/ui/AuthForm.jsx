@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { handleLogin } from '@/app/_lib/authService';
@@ -63,7 +64,7 @@ function AuthForm({ type = 'signup' }) {
             required: 'Password is required',
             minLength: {
               value: Number(process.env.NEXT_PUBLIC_MIN_PASSWORD_LENGTH) || 3,
-              message: `Password must be at least ${MIN_PASSWORD_LENGTH} characters`,
+              message: `Password must be at least ${process.env.NEXT_PUBLIC_MIN_PASSWORD_LENGTH} characters`,
             },
           })}
           error={errors.password?.message}
