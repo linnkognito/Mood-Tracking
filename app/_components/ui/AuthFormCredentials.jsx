@@ -1,9 +1,18 @@
 'use client';
 
+import { useFormContext } from 'react-hook-form';
 import FormRow from '@/app/_components/ui/FormRow';
 import InputText from '@/app/_components/ui/InputText';
 
-function AuthFormCredentials({ register, errors, variant = 'signup' }) {
+function AuthFormCredentials({
+  register: propRegister,
+  errors: propErrors,
+  variant = 'signup',
+}) {
+  const context = useFormContext();
+  const register = context?.register || propRegister;
+  const errors = context?.formState?.errors || propErrors;
+
   return (
     <>
       <FormRow label='Email' htmlFor='email' className='mb-250'>

@@ -7,9 +7,11 @@ import { signIn } from 'next-auth/react';
 import { applyFieldErrors } from '@/app/_utils/handleFieldErrors';
 import Button from '@/app/_components/ui/Button';
 import Form from '@/app/_components/ui/Form';
+import AuthFormCredentials from './AuthFormCredentials';
 
 function AuthFormLogin() {
   const [authError, setAuthError] = useState(null);
+
   const router = useRouter();
   const {
     register,
@@ -32,7 +34,7 @@ function AuthFormLogin() {
         return;
       }
 
-      router.push('/user/dashboard');
+      router.push(res.url);
     } catch (err) {
       applyFieldErrors(err.data.error ?? {}, setError, setAuthError);
       console.error('Auth error:', err);

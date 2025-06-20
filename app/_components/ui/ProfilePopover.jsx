@@ -4,11 +4,10 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import Paragraph from '../text/Paragraph';
-import ServerSideRedirect from './ServerSideRedirect';
+import ButtonLogout from './ButtonLogout';
 
 async function ProfilePopover({ ...props }) {
   const session = await getServerSession(authOptions);
-
   if (!session?.user) return null;
   const { name, email } = session.user;
 
@@ -40,20 +39,7 @@ async function ProfilePopover({ ...props }) {
           Settings
         </Link>
 
-        <form action='/api/auth/signout' method='POST'>
-          {/* Logout redirect: */}
-          <ServerSideRedirect path='/auth/login' />
-
-          <button type='submit' className='flex gap-125 w-full cursor-pointer'>
-            <Image
-              src='/icons/logout.svg'
-              alt='Logout'
-              width={16}
-              height={16}
-            />
-            Logout
-          </button>
-        </form>
+        <ButtonLogout />
       </div>
     </motion.div>
   );

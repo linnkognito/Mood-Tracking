@@ -6,7 +6,6 @@ import ProfilePopover from '../ui/ProfilePopover';
 import LogMood from '../ui/LogMood';
 
 function Header({ variant = 'default' }) {
-  //PLACEHOLDER --> user
   const user = null;
 
   return variant === 'auth' ? (

@@ -1,7 +1,13 @@
 import Image from 'next/image';
 import ProfilePopoverDropdown from './ProfilePopoverDropdown';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/_api/auth/[...nextauth]/route';
 
-function AvatarMenu({ user = { name: 'Linn', email: 'linn@gmail.com' } }) {
+async function AvatarMenu() {
+  const session = await getServerSession(authOptions);
+  const user = session?.user;
+  console.log(session);
+
   return (
     <ProfilePopoverDropdown user={user}>
       <div className='flex items-center gap-125 cursor-pointer'>

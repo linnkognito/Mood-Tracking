@@ -8,7 +8,7 @@ function InputFile({
   id,
   label = null,
   image = false,
-  error = true,
+  error = false,
   ...props
 }) {
   return (

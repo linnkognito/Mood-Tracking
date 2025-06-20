@@ -1,32 +1,15 @@
-'use client';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/_api/auth/[...nextauth]/route';
+import { redirect } from 'next/navigation';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import AuthSection from './AuthSection';
+async function StartPage() {
+  const session = await getServerSession(authOptions);
 
-function StartPage() {
-  const router = useRouter();
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-
-    if (storedToken && storedUser) {
-      router.push('/user/dashboard');
-    } else {
-      setToken(storedToken);
-      setUser(storedUser);
-    }
-  }, [router]);
-
-  return (
-    <>
-      {user && !token && <AuthSection type='login' />}
-      {!user && !token && <AuthSection type='signup' />}
-    </>
-  );
+  if (session?.user) {
+    redirect('/user/dashboard');
+  } else {
+    redirect('/auth/login');
+  }
 }
 
 export default StartPage;
