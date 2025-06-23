@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormContext } from 'react-hook-form';
-import { icons } from '@/app/_lib/moodStyles';
+import { icons } from '@/app/_data/moodStyles';
 import InputBullet from './InputBullet';
 import FormError from './FormError';
 

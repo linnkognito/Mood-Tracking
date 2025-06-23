@@ -8,6 +8,7 @@ import { applyFieldErrors } from '@/app/_utils/handleFieldErrors';
 import Button from '@/app/_components/ui/Button';
 import Form from '@/app/_components/ui/Form';
 import AuthFormCredentials from './AuthFormCredentials';
+import FormError from './FormError';
 
 function AuthFormLogin() {
   const [authError, setAuthError] = useState(null);
@@ -24,7 +25,6 @@ function AuthFormLogin() {
     try {
       const res = await signIn('credentials', {
         redirect: false,
-        callbackUrl: '/user/dashboard',
         email,
         password,
       });
@@ -34,7 +34,7 @@ function AuthFormLogin() {
         return;
       }
 
-      router.push(res.url);
+      router.push('/user/dashboard');
     } catch (err) {
       applyFieldErrors(err.data.error ?? {}, setError, setAuthError);
       console.error('Auth error:', err);
@@ -53,7 +53,7 @@ function AuthFormLogin() {
         {isSubmitting ? 'Signing in...' : 'Sign In'}
       </Button>
 
-      {authError && <p className='text-red-700'>{authError}</p>}
+      {authError && <FormError id='authError'>{authError}</FormError>}
     </Form>
   );
 }

@@ -1,5 +1,5 @@
-import { moodTestData } from '@/app/_lib/moodTestData';
-import { sleepTime } from '@/app/_lib/sleepData';
+import { moodTestData } from '@/app/_data/moodTestData';
+import { sleepTime } from '@/app/_data/sleepData';
 import { format, subDays } from 'date-fns';
 import Image from 'next/image';
 import Paragraph from '../text/Paragraph';

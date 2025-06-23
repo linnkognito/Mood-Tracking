@@ -1,4 +1,4 @@
-import { moodTestData } from '@/app/_lib/moodTestData';
+import { moodTestData } from '@/app/_data/moodTestData';
 
 import { format } from 'date-fns';
 import Image from 'next/image';

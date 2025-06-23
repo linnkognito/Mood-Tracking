@@ -6,7 +6,6 @@ import AuthSection from '@/app/_components/ui/AuthSection';
 
 function Page() {
   const [step, setStep] = useState(1);
-  console.log(step);
 
   const signUpData = [
     {

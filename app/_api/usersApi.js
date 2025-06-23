@@ -58,23 +58,18 @@ export async function createUser(userData) {
   return data;
 }
 
-export async function loginUser(credentials) {
-  /* Credentials object structure: { email, password }*/
+export async function loginUser({ email, password }) {
+  const body = JSON.stringify({ email, password });
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
+    headers: { 'Content-Type': 'application/json' },
+    body,
   });
 
   const data = await res.json();
 
-  if (!res.ok) {
-    throw { status: res.status, data };
-  }
-
+  if (!res.ok) throw { status: res.status, data };
   return data;
 }
 

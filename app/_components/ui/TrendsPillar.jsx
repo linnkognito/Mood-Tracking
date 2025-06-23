@@ -2,7 +2,7 @@ import {
   moodStyles,
   backgroundStyles,
   pillarHeight,
-} from '@/app/_lib/moodStyles';
+} from '@/app/_data/moodStyles';
 import Image from 'next/image';
 
 function TrendsPillar({ moodData = null, className = '' }) {
