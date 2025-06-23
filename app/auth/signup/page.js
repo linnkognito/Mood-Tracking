@@ -1,34 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useSignupForm } from '@/app/_hooks/useSignupForm';
+import { signupSteps } from '@/app/_data/signupStepsData';
 import AuthFormSignup from '@/app/_components/ui/AuthFormSignup';
 import AuthSection from '@/app/_components/ui/AuthSection';
 
 function Page() {
-  const [step, setStep] = useState(1);
-
-  const signUpData = [
-    {
-      id: 'signup',
-      heading: 'Create an account',
-      description: 'Join or track your daily mood and sleep with ease.',
-      formRedirect: {
-        text: 'Already got an account?',
-        linkText: 'Log in.',
-        linkHref: '/auth/login',
-      },
-    },
-    {
-      id: 'onboarding',
-      heading: 'Personalize your experience',
-      description: 'Add your name and a profile picture to make Mood yours.',
-      formRedirect: null,
-    },
-  ];
+  const form = useSignupForm();
 
   return (
-    <AuthSection options={signUpData[step - 1]}>
-      <AuthFormSignup step={step} setStep={setStep} />
+    <AuthSection options={signupSteps[form.step - 1] ?? signupSteps[0]}>
+      <AuthFormSignup form={form} />
     </AuthSection>
   );
 }
