@@ -5,9 +5,7 @@ import CardTrends from '@/app/_components/containers/CardTrends';
 import Container from '@/app/_components/containers/Container';
 import Header from '@/app/_components/layout/Header';
 
-function Page() {
-  // const { name, email } = session.user;
-
+async function Page() {
   const averageTest = {
     averageType: 'Mood',
     averageMood: 'Keep tracking!',

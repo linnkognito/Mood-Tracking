@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormContext } from 'react-hook-form';
-import { sleepTime } from '@/app/_data/sleepData';
+import { sleepTime } from '@/app/_data/sleepTime';
 import FormError from './FormError';
 import InputBullet from './InputBullet';
 
@@ -25,6 +25,7 @@ function LogMoodFormSleep() {
                   return 'Please select hours of sleep before continuing.';
                 }
               },
+              valueAsNumber: true,
             })}
           />
         </div>

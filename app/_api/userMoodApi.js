@@ -37,17 +37,6 @@ export async function getUserMood(usermoodId, token) {
 }
 
 // ---- POST --------------------------- //
-/* 
-moodData object structure:
-{
-  "user": 2,              // user ID
-  "mood": 3,              // mood ID (1 = happy, 2 = neutral, 3 = sad)
-  "diary_entry": "I'm tired",
-  "sleep_time": 7,
-  "feelings": [3, 4]      // list of feeling IDs
-} 
-  */
-
 export async function createUserMood(token, moodData) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/usermoods`, {
     method: 'POST',

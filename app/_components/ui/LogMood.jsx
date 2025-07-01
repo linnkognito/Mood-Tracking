@@ -2,34 +2,40 @@
 
 import { useRef, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { logMoodForms } from '@/app/_data/logMoodFormData';
+import { createUserMood } from '@/app/_api/userMoodApi';
 import useDismissEscape from '@/app/_hooks/useDismissEscape';
 import Button from './Button';
 import Overlay from './Overlay';
 import LogMoodModal from './LogMoodModal';
 import LogMoodForm from './LogMoodForm';
-import LogMoodFormMood from './LogMoodFormMood';
-import LogMoodFormFeelings from './LogMoodFormFeelings';
-import LogMoodFormNote from './LogMoodFormNote';
-import LogMoodFormSleep from './LogMoodFormSleep';
 
-function LogMood() {
+function LogMood({ user }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [step, setStep] = useState(1);
+  const modalRef = useRef(null);
   const methods = useForm({
     mode: 'onSubmit',
     defaultValues: {
       feelings: [],
     },
   });
-  const modalRef = useRef(null);
 
   function onSubmit(data) {
-    const userToken = sessionStorage.getItem('token');
-    createMood(userToken, data);
+    const moodData = {
+      user: user.id,
+      mood: Number(data.mood),
+      diary_entry: data.diary_entry,
+      sleep_time: Number(data.sleep_time),
+      feelings: data.feelings.map((feeling) => Number(feeling)),
+    };
+    createUserMood(user.accessToken, moodData);
     handleClose();
   }
+
   // Close modal on Esc
   useDismissEscape(isOpenModal, () => setIsOpenModal(false));
+
   // Close modal on close button (resets step)
   function handleClose() {
     setIsOpenModal(false);
@@ -52,34 +58,6 @@ function LogMood() {
     }
   }
 
-  const logMoodForms = [
-    {
-      id: 'form-mood',
-      heading: 'How was your mood today?',
-      fields: ['mood'],
-      form: <LogMoodFormMood />,
-    },
-    {
-      id: 'form-feelings',
-      heading: 'How did you feel?',
-      description: `Select up to three tags:`,
-      fields: ['feelings'],
-      form: <LogMoodFormFeelings />,
-    },
-    {
-      id: 'form-note',
-      heading: 'Write about your day...',
-      fields: ['diary_entry'],
-      form: <LogMoodFormNote />,
-    },
-    {
-      id: 'form-sleep',
-      heading: 'How many hours did you sleep last night?',
-      fields: ['sleep_time'],
-      form: <LogMoodFormSleep />,
-    },
-  ];
-
   const isFinalStep = step === logMoodForms.length;
 
   return (
@@ -99,7 +77,7 @@ function LogMood() {
 
               <Button
                 type={isFinalStep ? 'submit' : 'button'}
-                className='-mt-150'
+                className='mt-400'
                 onClick={handleContinue}
               >
                 {isFinalStep ? 'Submit' : 'Continue'}

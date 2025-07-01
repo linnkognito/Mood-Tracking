@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Paragraph from '../text/Paragraph';
 
-function InputBullet({ label, icon = null, ...props }) {
+function InputBullet({ label, value, icon = null, ...props }) {
   return (
     <label
       className={`flex items-center justify-between px-250 py-150 bg-neutral-0 border-2 border-blue-100 has-checked:border-blue-600 rounded-10 cursor-pointer`}
@@ -10,7 +10,7 @@ function InputBullet({ label, icon = null, ...props }) {
         <input
           type='radio'
           id={label}
-          value={label}
+          value={value}
           className='scale-125'
           {...props}
         />

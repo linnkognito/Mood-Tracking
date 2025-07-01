@@ -29,7 +29,7 @@ async function Header({ variant = 'default' }) {
       </div>
 
       {/* Log Mood Button (triggers modal) */}
-      <LogMood />
+      <LogMood user={user} />
     </header>
   );
 }
