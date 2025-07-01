@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import ProfilePopover from './ProfilePopover';
 import useDismiss from '@/app/_hooks/useDismiss';
 
-function ProfilePopoverDropdown({ children }) {
+function ProfilePopoverDropdown({ children, user }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 

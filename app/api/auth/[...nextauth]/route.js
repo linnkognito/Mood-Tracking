@@ -21,18 +21,28 @@ export const authOptions = {
           return null;
         }
       },
-      callbacks: {
-        async jwt({ token, user }) {
-          if (user) token.accessToken = user.token;
-          return token;
-        },
-        async session({ session, token }) {
-          session.user.accessToken = token.accessToken;
-          return session;
-        },
-      },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.accessToken = user.token;
+        token.name = user.name;
+        token.email = user.email;
+        token.image = user.image;
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.accessToken = token.accessToken;
+      session.user.name = token.name;
+      session.user.email = token.email;
+      session.user.image = token.image;
+      session.user.id = token.id;
+      return session;
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
 };
 

@@ -1,4 +1,3 @@
-import CardAverage from '@/app/_components/containers/CardAverage';
 import CardFeaturedFeeling from '@/app/_components/containers/CardFeaturedFeeling';
 import CardFeaturedReflection from '@/app/_components/containers/CardFeaturedReflection';
 import CardFeaturedSleep from '@/app/_components/containers/CardFeaturedSleep';
@@ -7,6 +6,8 @@ import Container from '@/app/_components/containers/Container';
 import Header from '@/app/_components/layout/Header';
 
 function Page() {
+  // const { name, email } = session.user;
+
   const averageTest = {
     averageType: 'Mood',
     averageMood: 'Keep tracking!',
@@ -30,11 +31,11 @@ function Page() {
 
   return (
     <main className='flex flex-col justify-center gap-600 pt-500 px-200 md:px-400 w-full max-w-site mx-auto'>
-      <Header user={true} />
+      <Header />
 
       <article className='flex flex-col gap-400 pb-1000'>
         {/* Section 1 (Current Feeling) */}
-        <section className='flex max-md:flex-col gap-400 w-full'>
+        <section className='flex max-md:flex-col items-stretch gap-400 w-full h-full'>
           <CardFeaturedFeeling />
 
           <div className='flex flex-col gap-250 w-full md:w-2/5'>

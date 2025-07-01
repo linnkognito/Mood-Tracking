@@ -1,15 +1,13 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+'use client';
+
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import Paragraph from '../text/Paragraph';
 import ButtonLogout from './ButtonLogout';
 
-async function ProfilePopover({ ...props }) {
-  const session = await getServerSession(authOptions);
-  if (!session?.user) return null;
-  const { name, email } = session.user;
+function ProfilePopover({ user, ...props }) {
+  const { name, email } = user;
 
   return (
     <motion.div

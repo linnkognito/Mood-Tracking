@@ -1,12 +1,11 @@
-import Image from 'next/image';
-import ProfilePopoverDropdown from './ProfilePopoverDropdown';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import Image from 'next/image';
+import ProfilePopoverDropdown from './ProfilePopoverDropdown';
 
 async function AvatarMenu() {
   const session = await getServerSession(authOptions);
   const user = session?.user;
-  console.log(session);
 
   return (
     <ProfilePopoverDropdown user={user}>

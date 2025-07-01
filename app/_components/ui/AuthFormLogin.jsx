@@ -34,6 +34,7 @@ function AuthFormLogin() {
         return;
       }
 
+      console.log(res);
       router.push('/user/dashboard');
     } catch (err) {
       applyFieldErrors(err.data.error ?? {}, setError, setAuthError);

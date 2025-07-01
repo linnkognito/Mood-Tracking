@@ -1,12 +1,14 @@
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import Logo from '@/app/_components/layout/Logo';
 import Navbar from './Navbar';
 import Heading from '../text/Heading';
 import DateCurrent from '../ui/DateCurrent';
-import ProfilePopover from '../ui/ProfilePopover';
 import LogMood from '../ui/LogMood';
 
-function Header({ variant = 'default' }) {
-  const user = null;
+async function Header({ variant = 'default' }) {
+  const session = await getServerSession(authOptions);
+  const user = session?.user;
 
   return variant === 'auth' ? (
     <header>
@@ -28,8 +30,6 @@ function Header({ variant = 'default' }) {
 
       {/* Log Mood Button (triggers modal) */}
       <LogMood />
-
-      <ProfilePopover />
     </header>
   );
 }
