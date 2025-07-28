@@ -1,12 +1,11 @@
+import { calcAverageMoodSleep } from '@/app/_lib/calcAverageMoodSleep';
+import { moodStyles } from '@/app/_data/moodStyles';
 import Image from 'next/image';
 import Heading from '../text/Heading';
 import Paragraph from '../text/Paragraph';
 import AverageMood from '../ui/AverageMood';
 import AverageSleep from '../ui/AverageSleep';
-import { calcAverageMoodSleep } from '@/app/_lib/calcAverageMoodSleep';
 import AverageNoData from '../ui/AverageNoData';
-import { moodStyles } from '@/app/_data/moodStyles';
-import { sleepStyles } from '@/app/_data/sleepStyles';
 
 async function CardAverage({ variant, className = '' }) {
   const average = await calcAverageMoodSleep(variant);
@@ -30,7 +29,6 @@ async function CardAverage({ variant, className = '' }) {
       <div
         className={`grow relative flex flex-col justify-center gap-150 min-h-[160px] p-250 rounded-16 ${getBackground()}`}
       >
-        {/* Background image */}
         <Image
           src='/pattern.svg'
           alt='Background'

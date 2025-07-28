@@ -10,7 +10,7 @@ async function AverageSleep({ average }) {
 
   return (
     <>
-      <Heading tag='h3' preset='4'>
+      <Heading tag='h3' preset='4' className='text-neutral-0'>
         <Image src='/icons/sleep.svg' alt='Sleep' width={24} height={24} />
         {sleepAmount.label} Hours
       </Heading>

@@ -16,7 +16,9 @@ function CardFeaturedReflection({ tags, reflection = '' }) {
       <div className='flex gap-150 flex-wrap'>
         {tags?.map((tag) => (
           <div key={tag}>
-            <span preset='text-preset-6-italic text-neutral-600'>#{tag}</span>
+            <Paragraph preset='6-italic' className=' text-neutral-600'>
+              #{tag}
+            </Paragraph>
           </div>
         ))}
       </div>

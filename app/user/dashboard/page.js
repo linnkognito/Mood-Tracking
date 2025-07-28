@@ -1,6 +1,5 @@
 import { reflectionTest } from '@/app/_data/averageTestData'; //TEST DATA
 
-// import { getUser } from '@/app/_api/usersApi';
 import CardFeaturedFeeling from '@/app/_components/containers/CardFeaturedFeeling';
 import CardFeaturedReflection from '@/app/_components/containers/CardFeaturedReflection';
 import CardFeaturedSleep from '@/app/_components/containers/CardFeaturedSleep';
@@ -10,8 +9,6 @@ import Header from '@/app/_components/layout/Header';
 import CardAverage from '@/app/_components/containers/CardAverage';
 
 async function Page() {
-  // const user = await getUser();
-
   return (
     <main className='flex flex-col justify-center gap-600 pt-500 px-200 md:px-400 w-full max-w-site mx-auto'>
       <Header />
