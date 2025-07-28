@@ -1,6 +1,7 @@
 // ---- GET  --------------------------- //
 export async function getUserMoods(token) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/usermoods`, {
+    method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -8,27 +9,7 @@ export async function getUserMoods(token) {
 
   const data = await res.json();
 
-  if (!res.ok) {
-    console.error('Failed to fetch user moods:', data?.message || res.status);
-    throw new Error(data?.message || 'Failed to fetch user moods');
-  }
-
-  return data;
-}
-
-export async function getUserMood(usermoodId, token) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/usermoods/${usermoodId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-
-  const data = await res.json();
-
-  if (!res.ok) {
+  if (!data) {
     console.error('Failed to fetch user moods:', data?.message || res.status);
     throw new Error(data?.message || 'Failed to fetch user moods');
   }

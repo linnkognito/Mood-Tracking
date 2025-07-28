@@ -1,24 +1,34 @@
-// import { moodStyles as styles } from '@/app/_lib/moodStyles';
 import Image from 'next/image';
 import Heading from '../text/Heading';
 import Paragraph from '../text/Paragraph';
+import AverageMood from '../ui/AverageMood';
+import AverageSleep from '../ui/AverageSleep';
+import { calcAverageMoodSleep } from '@/app/_lib/calcAverageMoodSleep';
+import AverageNoData from '../ui/AverageNoData';
+import { moodStyles } from '@/app/_data/moodStyles';
+import { sleepStyles } from '@/app/_data/sleepStyles';
 
-function CardAverage({ variant, average = null, className = '' }) {
-  const theme = average ? moodStyles[average.mood] : moodStyles.blank;
-  const description = average ? average.description : '';
+async function CardAverage({ variant, className = '' }) {
+  const average = await calcAverageMoodSleep(variant);
+
+  const getBackground = () => {
+    if (average === 0) return 'bg-blue-100';
+    if (variant === 'mood') return moodStyles[average].background;
+    if (variant === 'sleep') return 'bg-blue-600';
+  };
 
   return (
     <div className={`flex flex-col w-full h-1/2 ${className}`}>
       {/* Content */}
       <div className='flex items-center gap-050 mb-150'>
         <Heading tag='h2' preset='5' className='text-neutral-900'>
-          {average ? `Average ${variant === 'mood' ? 'Mood' : 'Sleep'}` : ''}
+          {variant ? `Average ${variant === 'mood' ? 'Mood' : 'Sleep'}` : ''}
         </Heading>
         <Paragraph>(Last 5 Check-ins)</Paragraph>
       </div>
 
       <div
-        className={`grow relative flex flex-col justify-center gap-150 min-h-[160px] p-250 rounded-16 ${theme.background}`}
+        className={`grow relative flex flex-col justify-center gap-150 min-h-[160px] p-250 rounded-16 ${getBackground()}`}
       >
         {/* Background image */}
         <Image
@@ -29,10 +39,13 @@ function CardAverage({ variant, average = null, className = '' }) {
           className='absolute top-0 right-0 object-cover'
         />
 
-        <Heading tag='h3' preset='4'>
-          {average}
-        </Heading>
-        <Paragraph preset='7'>{average}</Paragraph>
+        {average === 0 ? (
+          <AverageNoData variant={variant} />
+        ) : variant === 'mood' ? (
+          <AverageMood average={average} />
+        ) : (
+          <AverageSleep average={average} />
+        )}
       </div>
     </div>
   );

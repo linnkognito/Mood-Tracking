@@ -37,6 +37,7 @@ function AuthFormCredentials({
         <InputText
           type='password'
           id='password'
+          placeholder='●●●●●●●●'
           {...register('password', {
             required: 'Password is required',
             minLength: {
