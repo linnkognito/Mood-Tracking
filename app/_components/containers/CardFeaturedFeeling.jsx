@@ -21,7 +21,7 @@ function CardFeaturedFeeling({
     overflow-hidden
     '
     >
-      <div className='flex flex-col justify-between items-stretch w-full max-w-[246px] sm:h-full border'>
+      <div className='flex flex-col justify-between items-stretch w-full max-w-[246px] sm:h-full'>
         <Heading tag='h2'>
           <span className='block text-preset-3 text-neutral-600'>
             I'm feeling

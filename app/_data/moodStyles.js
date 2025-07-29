@@ -2,7 +2,7 @@ export const moodStyles = {
   1: {
     id: 1,
     label: 'Very Happy',
-    background: 'bg-amber-600',
+    background: 'bg-amber-300',
     icon: {
       icon: '/icons/very-happy.svg',
       iconWhite: '/icons/very-happy-white.svg',
@@ -62,6 +62,8 @@ export const backgroundStyles = {
   veryHappy: 'bg-amber-600',
   happy: 'bg-green-300',
   neutral: 'bg-blue-300',
+  sad: 'bg-indigo-200',
+  verySad: 'bg-red-300',
   sleep: 'bg-blue-600',
 };
 export const icons = {

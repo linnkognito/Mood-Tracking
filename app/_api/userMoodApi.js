@@ -34,7 +34,7 @@ export async function createUserMood(token, moodData) {
     console.error('Failed to create user mood:', data?.message || res.status);
     throw new Error(data?.message || 'Failed to create user mood');
   }
-
+  console.log(data);
   return data;
 }
 

@@ -1,11 +1,24 @@
-import { moodTestData } from '@/app/_data/moodTestData';
 import { sleepTime } from '@/app/_data/sleepTime';
-import { format, subDays } from 'date-fns';
+import { format } from 'date-fns';
+// import { getUserMoods } from '@/app/_api/userMoodApi';
+// import { getSessionToken } from '@/app/_lib/auth';
 import Image from 'next/image';
 import Paragraph from '../text/Paragraph';
 import TrendsPillar from './TrendsPillar';
+import { moodTestData } from '@/app/_data/moodTestData';
 
-function TrendsDiagram() {
+async function TrendsDiagram() {
+  // const token = await getSessionToken();
+  // if (!token) return null;
+
+  // const moodData = await getUserMoods(token);
+  // const moodDataLast11Days = moodData.slice(-11) || [];
+  // const isEmpty = moodDataLast11Days.length === 0;
+
+  //TEST DATA
+  const moodDataLast11Days = moodTestData.slice(-11) || [];
+  const isEmpty = moodDataLast11Days.length === 0;
+
   return (
     <div className='flex items-start gap-150 md:gap-200 w-full min-h-[312px]'>
       {/* Hours column */}
@@ -39,30 +52,28 @@ function TrendsDiagram() {
           ))}
         </div>
 
-        <div className='flex-grow flex flex-col justify-end gap-150 md:gap-200 pt-200'>
+        <div className='relative flex-grow flex flex-row justify-end gap-150 md:gap-200 pt-200'>
           {/* Mood Pillars */}
-          {moodTestData.map((moodData) => (
-            <TrendsPillar
-              key={`trendPillar-${moodData.id}`}
-              moodData={moodData}
-            />
-          ))}
+          {!isEmpty &&
+            moodDataLast11Days.map((mood) => (
+              <TrendsPillar key={`trendPillar-${mood.id}`} moodData={mood} />
+            ))}
         </div>
 
         {/* Dates */}
         <div className='flex gap-150 md:gap-200 pt-100 max-sm:pb-125'>
-          {[...Array(11)].map((_, i) => {
-            const day = subDays(new Date(), 11 - i);
-            return (
-              <div
-                key={`trends-date-${i}`}
-                className='row-start-6 flex flex-col items-center gap-075 w-500'
-              >
-                <Paragraph preset='9'>{format(day, 'MMM')}</Paragraph>
-                <Paragraph preset='8'>{format(day, 'dd')}</Paragraph>
-              </div>
-            );
-          })}
+          {!isEmpty &&
+            moodDataLast11Days.map((mood, index) => {
+              return (
+                <div
+                  key={`trends-date-${index}`}
+                  className='row-start-6 flex flex-col items-center gap-075 w-500'
+                >
+                  <Paragraph preset='9'>{format(mood.date, 'MMM')}</Paragraph>
+                  <Paragraph preset='8'>{format(mood.date, 'dd')}</Paragraph>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>
