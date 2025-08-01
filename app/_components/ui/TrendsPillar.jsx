@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { moodStyles, backgroundStyles } from '@/app/_data/moodStyles';
+import { moodStyles } from '@/app/_data/moodStyles';
 import Image from 'next/image';
 import TrendsPillarPopover from './TrendsPillarPopover';
 import { pillarHeight } from '@/app/_data/pillarHeight';

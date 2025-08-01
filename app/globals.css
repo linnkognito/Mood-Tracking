@@ -97,6 +97,10 @@
     background: var(--bg-light-gradient);
   }
 
+  .border-test {
+    border: 1px solid red;
+  }
+
   .scrollbar-trends {
     scrollbar-color: var(--color-blue-200) transparent;
     scrollbar-width: thin;

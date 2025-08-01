@@ -15,7 +15,7 @@ async function Header({ variant = 'default' }) {
       <Logo />
     </header>
   ) : (
-    <header className='relative flex flex-col gap-800 w-full mb-800'>
+    <header className='relative flex flex-col gap-800 w-full max-w-site mx-auto mb-800'>
       <Navbar />
 
       <div className='flex flex-col items-center gap-125'>
