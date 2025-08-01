@@ -17,7 +17,7 @@ function TrendsPillarPopover({ moodData }) {
   const sleep = sleepTimeAverage.find((time) => time.id === sleepTime);
 
   return (
-    <div className='absolute top-0 right-[48px] w-[175px] bg-neutral-0 flex flex-col gap-150 p-150 border border-blue-100 shadow-popover rounded-12 z-1000'>
+    <div className='absolute top-0 right-[48px] w-[175px] bg-neutral-0 flex flex-col gap-150 p-150 border border-blue-100 shadow-popover rounded-12'>
       <div className='flex flex-col gap-100'>
         <Heading tag='h3' preset='8' className='text-neutral-600'>
           Mood

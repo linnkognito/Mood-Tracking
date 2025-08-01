@@ -1,10 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
 import Paragraph from '../text/Paragraph';
 import ButtonLogout from './ButtonLogout';
+import ButtonSettings from './ButtonSettings';
 
 function ProfilePopover({ user, ...props }) {
   const { name, email } = user;
@@ -27,16 +26,7 @@ function ProfilePopover({ user, ...props }) {
 
       {/* Links */}
       <div>
-        <Link href='/user/settings' className='flex gap-125 mb-050'>
-          <Image
-            src='/icons/settings.svg'
-            alt='Settings'
-            width={16}
-            height={16}
-          />
-          Settings
-        </Link>
-
+        <ButtonSettings />
         <ButtonLogout />
       </div>
     </motion.div>
