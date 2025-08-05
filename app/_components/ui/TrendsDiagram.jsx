@@ -20,10 +20,10 @@ async function TrendsDiagram() {
   const isEmpty = moodDataLast11Days.length === 0;
 
   return (
-    <div className='trends-diagram min-h-[312px]'>
-      <div className='flex items-start gap-150 md:gap-200'>
+    <div className='trends-diagram min-h-[312px] w-full max-w-full'>
+      <div className='flex items-start gap-150 md:gap-200 max-w-full overflow-hidden'>
         {/* Hours column */}
-        <div className='grid grid-cols-1 grid-rows-[repeat(5,54px)_repeat(2,44px)] min-w-[68px]'>
+        <div className='grid grid-cols-1 grid-rows-[repeat(5,54px)_repeat(2,44px)] w-full max-w-[68px]'>
           {sleepTime.map((hours) => (
             <div key={`trends-hour-${hours.id}`}>
               <div className='flex items-center text-neutral-600'>
@@ -41,7 +41,7 @@ async function TrendsDiagram() {
         </div>
 
         {/* Diagram Wrapper -------------- */}
-        <div className='flex-grow relative grid grid-cols-[repeat(11,auto)] gap-150 md:gap-200 min-h-[312px] overflow-y-hidden overflow-x-auto scrollbar-trends z-10'>
+        <div className='relative grid grid-cols-[repeat(11,auto)] gap-150 md:gap-200 min-h-[312px] overflow-y-hidden overflow-x-auto scrollbar-trends z-10 w-full'>
           {/* Mood Pillars */}
           {!isEmpty &&
             moodDataLast11Days.map((mood, index) => (

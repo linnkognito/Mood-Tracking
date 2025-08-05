@@ -1,5 +1,3 @@
-'use client';
-
 import { reflectionTest } from '@/app/_data/averageTestData'; //TEST DATA
 import CardFeaturedFeeling from '@/app/_components/containers/CardFeaturedFeeling';
 import CardFeaturedReflection from '@/app/_components/containers/CardFeaturedReflection';
@@ -9,17 +7,8 @@ import Header from '@/app/_components/layout/Header';
 import CardAverage from '@/app/_components/containers/CardAverage';
 import Heading from '@/app/_components/text/Heading';
 import TrendsDiagram from '@/app/_components/ui/TrendsDiagram';
-import { useRef, useState, useEffect } from 'react';
 
 function Page() {
-  const ref = useRef(null);
-  const [averageContainerWidth, setAverageContainerWidth] = useState(0);
-
-  useEffect(() => {
-    const width = ref.current.getBoundingClientRect().width;
-    setAverageContainerWidth(width);
-  }, [ref]);
-
   return (
     <main className='flex flex-col justify-center gap-600 pt-500 px-200 md:px-400'>
       <Header />
@@ -39,17 +28,13 @@ function Page() {
         </section>
 
         {/* Section 2 (Average & Trends) */}
-        <section className='flex max-lg:flex-col gap-400 w-full'>
-          <Container
-            ref={ref}
-            tag='section'
-            className='flex flex-col gap-300 p-300 lg:max-w-[370px]'
-          >
+        <section className='flex max-lg:flex-col lg:grid lg:grid-cols-[auto_1fr] gap-400 w-full max-w-full'>
+          <Container tag='section' className='flex flex-col gap-300 p-300'>
             <CardAverage variant='mood' />
             <CardAverage variant='sleep' />
           </Container>
 
-          <Container tag='section' className='flex-grow p-400 lg:max-w-[768px]'>
+          <Container tag='section' className='p-400'>
             <Heading tag='h2' preset='3' className='mb-400'>
               Mood and sleep trends
             </Heading>

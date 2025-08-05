@@ -17,7 +17,7 @@ async function CardAverage({ variant, className = '' }) {
   };
 
   return (
-    <div className={`flex flex-col w-full h-1/2 ${className}`}>
+    <div className={`flex flex-col w-full lg:max-w-[320px] h-1/2 ${className}`}>
       {/* Content */}
       <div className='flex items-center gap-050 mb-150'>
         <Heading tag='h2' preset='5' className='text-neutral-900'>
@@ -27,14 +27,15 @@ async function CardAverage({ variant, className = '' }) {
       </div>
 
       <div
-        className={`grow relative flex flex-col justify-center gap-150 min-h-[160px] p-250 rounded-16 ${getBackground()}`}
+        className={`relative flex flex-col justify-center gap-150 p-250 rounded-16 w-full h-[150px]
+          ${getBackground()}`}
       >
         <Image
           src='/pattern.svg'
           alt='Background'
-          width={65}
-          height={160}
-          className='absolute top-0 right-0 object-cover'
+          width={61}
+          height={150}
+          className='absolute right-0 top-0'
         />
 
         {average === 0 ? (

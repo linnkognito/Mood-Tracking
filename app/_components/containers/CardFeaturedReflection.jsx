@@ -8,7 +8,7 @@ function CardFeaturedReflection({ tags, reflection = '' }) {
       icon='/icons/stars.svg'
       className='grow flex flex-col justify-between'
     >
-      <div className='h-full'>
+      <div className='h-full min-h-[80px]'>
         <Paragraph preset='6'>{reflection}</Paragraph>
       </div>
 

@@ -10,8 +10,9 @@ function CardFeaturedFeeling({
   return (
     <Container
       className='
-        grow grid grid-cols-1 sm:grid-cols-[1fr_auto]
-        max-sm:place-items-center
+        grow flex flex-col sm:flex-row
+        items-center sm:items-start
+        justify-center sm:justify-between
         max-sm:gap-400
         w-full lg:max-w-3/5 min-h-full
         max-sm:px-200 max-sm:py-400 sm:p-400
@@ -19,7 +20,7 @@ function CardFeaturedFeeling({
         overflow-hidden
     '
     >
-      <div className='grow flex flex-col justify-between items-stretch w-full max-w-[246px]'>
+      <div className='grow flex flex-col justify-between items-stretch w-full max-w-[246px] border-test'>
         <Heading tag='h2'>
           <span className='block text-preset-3 text-neutral-600'>
             I'm feeling

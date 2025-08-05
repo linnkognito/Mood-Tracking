@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 
 @theme inline {
+  --breakpoint-featured: 960px;
+
   --color-neutral-0: #ffffff;
   --color-neutral-200: #cbcdd0;
   --color-neutral-300: #9393b7;

@@ -1,5 +1,4 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { getCurrentUser } from '@/app/_lib/getCurrentUser';
 import Logo from '@/app/_components/layout/Logo';
 import Navbar from './Navbar';
 import Heading from '../text/Heading';
@@ -7,8 +6,7 @@ import DateCurrent from '../ui/DateCurrent';
 import LogMood from '../ui/LogMood';
 
 async function Header({ variant = 'default' }) {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
+  const user = await getCurrentUser();
 
   return variant === 'auth' ? (
     <header>
@@ -20,7 +18,7 @@ async function Header({ variant = 'default' }) {
 
       <div className='flex flex-col items-center gap-125'>
         <Heading preset='3' className='text-blue-600'>
-          Hello, {user?.name || 'User'}
+          Hello, {user?.name.split(' ')[0] || 'User'}
         </Heading>
         <Heading preset='1' tag='h1' className='text-center text-neutral-900'>
           How are you feeling today?

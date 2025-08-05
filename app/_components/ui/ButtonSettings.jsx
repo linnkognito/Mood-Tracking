@@ -11,7 +11,6 @@ function ButtonSettings() {
 
   const handleClick = () => {
     setShowSettingsModal(true);
-    console.log('clicked');
   };
 
   return (
@@ -20,7 +19,7 @@ function ButtonSettings() {
         type='button'
         aria-label='Settings'
         onClick={handleClick}
-        className='flex gap-125 w-full mb-050 cursor-pointer bg-black'
+        className='flex gap-125 w-full mb-050 cursor-pointer'
       >
         <Image
           src='/icons/settings.svg'
