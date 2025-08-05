@@ -7,8 +7,14 @@ import Header from '@/app/_components/layout/Header';
 import CardAverage from '@/app/_components/containers/CardAverage';
 import Heading from '@/app/_components/text/Heading';
 import TrendsDiagram from '@/app/_components/ui/TrendsDiagram';
+// import { hasLoggedMoodToday } from '@/app/_lib/hasLoggedMoodToday';
 
 function Page() {
+  //PLACEHOLDER
+  // Fetch user mood entry from database
+  // const showTodaysMood = hasLoggedMoodToday();
+  // If !showTodaysMood, hide Section 1
+
   return (
     <main className='flex flex-col justify-center gap-600 pt-500 px-200 md:px-400'>
       <Header />
