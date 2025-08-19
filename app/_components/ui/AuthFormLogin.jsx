@@ -11,9 +11,9 @@ import AuthFormCredentials from './AuthFormCredentials';
 import FormError from './FormError';
 
 function AuthFormLogin() {
+  const router = useRouter();
   const [authError, setAuthError] = useState(null);
 
-  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -34,7 +34,6 @@ function AuthFormLogin() {
         return;
       }
 
-      console.log(res);
       router.push('/user/dashboard');
     } catch (err) {
       applyFieldErrors(err.data.error ?? {}, setError, setAuthError);

@@ -1,19 +1,15 @@
 import Image from 'next/image';
 import ProfilePopoverDropdown from './ProfilePopoverDropdown';
+import { getUserImage } from '@/app/_lib/getUserImage';
 
 function AvatarMenu({ user }) {
   if (!user) return null;
-
-  function getImageUrl() {
-    if (!user.image || user.image === 'uploads/default_user.png')
-      return '/avatar-default.svg';
-  }
 
   return (
     <ProfilePopoverDropdown user={user}>
       <div className='flex items-center gap-125 cursor-pointer'>
         <Image
-          src={getImageUrl()}
+          src={getUserImage(user.image)}
           alt='avatar'
           width={40}
           height={40}

@@ -11,7 +11,7 @@ function AuthFormSignup({ form }) {
 
   return (
     <FormProvider {...methods}>
-      <Form className='mt-400'>
+      <Form className='mt-400' methods={methods}>
         {step === 1 && <AuthFormCredentials variant='signup' />}
         {step === 2 && <AuthFormPersonalize />}
 

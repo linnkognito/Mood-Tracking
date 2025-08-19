@@ -1,10 +1,45 @@
+'use client';
+
 import Heading from '../text/Heading';
 import Paragraph from '../text/Paragraph';
 import AuthFormPersonalize from './AuthFormPersonalize';
 import Form from './Form';
 import Button from './Button';
+import { FormProvider, useForm } from 'react-hook-form';
 
 function SettingsModal({ user }) {
+  if (!user) return null;
+
+  const [authError, setAuthError] = useState(null);
+
+  const {
+    register,
+    handleSubmit,
+    methods,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues: {
+      name: user.name,
+    },
+  });
+
+  async function onSubmit(userData) {
+    try {
+      const res = await updateUser(userData);
+
+      if (!res?.ok) {
+        setAuthError(res.data.message);
+        return;
+      }
+
+      return res;
+    } catch (err) {
+      applyFieldErrors(err.data.error ?? {}, setError, setAuthError);
+      console.error('Auth error:', err);
+    }
+  }
+
   return (
     <section
       role='dialog'
@@ -20,10 +55,18 @@ function SettingsModal({ user }) {
         </Paragraph>
       </div>
 
-      <Form>
-        <AuthFormPersonalize user={user} />
-        <Button type='submit'>Save changes</Button>
-      </Form>
+      <FormProvider {...methods}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <AuthFormPersonalize
+            user={user}
+            register={register}
+            errors={errors}
+          />
+          <Button type='submit'>Save changes</Button>
+
+          {authError && <FormError id='authError'>{authError}</FormError>}
+        </Form>
+      </FormProvider>
     </section>
   );
 }
