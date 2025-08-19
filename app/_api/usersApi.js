@@ -75,12 +75,20 @@ export async function loginUser({ email, password }) {
 
 // PATCH //
 export async function updateUser(userData) {
+  const body = {
+    name: userData.name,
+  };
+
+  if (userData.image) {
+    body.image = userData.image;
+  }
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(userData),
+    body: JSON.stringify(body),
   });
 
   const data = await res.json();

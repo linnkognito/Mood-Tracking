@@ -5,24 +5,29 @@ import Paragraph from '../text/Paragraph';
 import AuthFormPersonalize from './AuthFormPersonalize';
 import Form from './Form';
 import Button from './Button';
+import ButtonCloseModal from './ButtonCloseModal';
+import FormError from './FormError';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { updateUser } from '@/app/_api/usersApi';
+import { applyFieldErrors } from '@/app/_utils/handleFieldErrors';
 
-function SettingsModal({ user }) {
+function SettingsModal({ user, onClose }) {
   if (!user) return null;
 
   const [authError, setAuthError] = useState(null);
 
-  const {
-    register,
-    handleSubmit,
-    methods,
-    setError,
-    formState: { errors, isSubmitting },
-  } = useForm({
+  const methods = useForm({
     defaultValues: {
       name: user.name,
     },
   });
+
+  const {
+    handleSubmit,
+    setError,
+    formState: { isSubmitting },
+  } = methods;
 
   async function onSubmit(userData) {
     try {
@@ -44,8 +49,10 @@ function SettingsModal({ user }) {
     <section
       role='dialog'
       aria-labelledby='settings-modal-heading'
-      className='flex flex-col gap-300 md:gap-400 w-full max-w-[600px] px-250 py-500 md:px-500 md:py-600 bg-neutral-0 rounded-16 shadow-container z-10'
+      className='relative flex flex-col gap-300 md:gap-400 w-full max-w-[600px] h-fit px-250 py-500 md:px-500 md:py-600 bg-neutral-0 rounded-16 shadow-container z-10'
     >
+      <ButtonCloseModal onClose={onClose} />
+
       <div className='w-full flex flex-col gap-100'>
         <Heading id='settings-modal-heading' preset='3'>
           Update your profile
@@ -57,12 +64,14 @@ function SettingsModal({ user }) {
 
       <FormProvider {...methods}>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <AuthFormPersonalize
-            user={user}
-            register={register}
-            errors={errors}
-          />
-          <Button type='submit'>Save changes</Button>
+          <AuthFormPersonalize />
+          <Button
+            type='submit'
+            disabled={isSubmitting}
+            className='w-full mt-400'
+          >
+            Save changes
+          </Button>
 
           {authError && <FormError id='authError'>{authError}</FormError>}
         </Form>
