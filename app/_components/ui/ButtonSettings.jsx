@@ -1,24 +1,20 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Overlay from './Overlay';
 import SettingsModal from './SettingsModal';
 
-function ButtonSettings() {
-  const modalRef = useRef(null);
-  const [showSettingsModal, setShowSettingsModal] = useState(false);
-
-  const handleClick = () => {
-    setShowSettingsModal(true);
-  };
+function ButtonSettings({ user }) {
+  const [showSettingsModal, setShowSettingsModal] = useState(true);
 
   return (
     <>
       <button
         type='button'
         aria-label='Settings'
-        onClick={handleClick}
+        onClick={() => setShowSettingsModal(true)}
         className='flex gap-125 w-full mb-050 cursor-pointer'
       >
         <Image
@@ -30,14 +26,16 @@ function ButtonSettings() {
         Settings
       </button>
 
-      {showSettingsModal && (
-        <Overlay isOpen={showSettingsModal}>
-          <SettingsModal
-            ref={modalRef}
-            onClose={() => setShowSettingsModal(false)}
-          />
-        </Overlay>
-      )}
+      {showSettingsModal &&
+        createPortal(
+          <Overlay isOpen={showSettingsModal}>
+            <SettingsModal
+              onClose={() => setShowSettingsModal(false)}
+              user={user}
+            />
+          </Overlay>,
+          document.body
+        )}
     </>
   );
 }

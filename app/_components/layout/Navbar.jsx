@@ -1,11 +1,14 @@
+import { getCurrentUser } from '@/app/_lib/getCurrentUser';
 import AvatarMenu from '../ui/AvatarMenu';
 import Logo from './Logo';
 
-function Navbar() {
+async function Navbar() {
+  const user = await getCurrentUser();
+
   return (
     <nav className='flex items-center justify-between'>
       <Logo />
-      <AvatarMenu />
+      <AvatarMenu user={user} />
     </nav>
   );
 }

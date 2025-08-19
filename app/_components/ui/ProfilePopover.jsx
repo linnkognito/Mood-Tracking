@@ -26,7 +26,7 @@ function ProfilePopover({ user, ...props }) {
 
       {/* Links */}
       <div>
-        <ButtonSettings />
+        <ButtonSettings user={user} />
         <ButtonLogout />
       </div>
     </motion.div>

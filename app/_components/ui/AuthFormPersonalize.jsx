@@ -3,7 +3,7 @@ import FormRow from './FormRow';
 import InputFile from './InputFile';
 import InputText from './InputText';
 
-function AuthFormPersonalize() {
+function AuthFormPersonalize({ user = null }) {
   const {
     register,
     formState: { errors },
@@ -16,6 +16,7 @@ function AuthFormPersonalize() {
           type='text'
           id='name'
           placeholder={'Jane Appleseed'}
+          value={user?.name || null}
           {...register('name', {
             required: 'Name is required',
           })}
@@ -29,7 +30,7 @@ function AuthFormPersonalize() {
           type='file'
           id='profile-picture'
           label='Upload Image'
-          image={null}
+          image={user?.image || null}
           {...register('image')}
           error={errors.image?.message}
         />

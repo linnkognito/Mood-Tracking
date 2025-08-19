@@ -1,17 +1,19 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import Image from 'next/image';
 import ProfilePopoverDropdown from './ProfilePopoverDropdown';
 
-async function AvatarMenu() {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
+function AvatarMenu({ user }) {
+  if (!user) return null;
+
+  function getImageUrl() {
+    if (!user.image || user.image === 'uploads/default_user.png')
+      return '/avatar-default.svg';
+  }
 
   return (
     <ProfilePopoverDropdown user={user}>
       <div className='flex items-center gap-125 cursor-pointer'>
         <Image
-          src={user?.image || '/avatar-default.svg'}
+          src={getImageUrl()}
           alt='avatar'
           width={40}
           height={40}
