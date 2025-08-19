@@ -36,7 +36,11 @@ function ButtonSettings({ user }) {
       {showSettingsModal &&
         createPortal(
           <Overlay isOpen={showSettingsModal}>
-            <SettingsModal user={user} onClose={handleCloseModal} />
+            <SettingsModal
+              user={user}
+              isOpen={showSettingsModal}
+              onClose={handleCloseModal}
+            />
           </Overlay>,
           document.body
         )}

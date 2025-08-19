@@ -1,7 +1,7 @@
 'use client';
 
 import { FormProvider, useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { updateUser } from '@/app/_api/usersApi';
 import { applyFieldErrors } from '@/app/_utils/handleFieldErrors';
 import Heading from '../text/Heading';
@@ -11,9 +11,13 @@ import Form from './Form';
 import Button from './Button';
 import ButtonCloseModal from './ButtonCloseModal';
 import FormError from './FormError';
+import useDismiss from '@/app/_hooks/useDismiss';
 
-function SettingsModal({ user, onClose }) {
+function SettingsModal({ user, isOpen, onClose }) {
   if (!user) return null;
+
+  const modalRef = useRef();
+  useDismiss(modalRef, isOpen, onClose);
 
   const [authError, setAuthError] = useState(null);
 
@@ -45,6 +49,7 @@ function SettingsModal({ user, onClose }) {
 
   return (
     <section
+      ref={modalRef}
       role='dialog'
       aria-labelledby='settings-modal-heading'
       className='relative flex flex-col gap-300 md:gap-400 w-full max-w-[600px] h-fit px-250 py-500 md:px-500 md:py-600 bg-neutral-0 rounded-16 shadow-container z-10'
