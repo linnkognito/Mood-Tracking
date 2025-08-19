@@ -28,7 +28,7 @@ function InputFile({
           </Label>
         )}
         <Paragraph>Max 250KB, PNG or JPEG</Paragraph>
-        <Button variant='secondary' className='mt-200'>
+        <Button type='button' variant='secondary' className='mt-200'>
           Upload
         </Button>
 

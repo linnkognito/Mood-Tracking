@@ -39,6 +39,7 @@ function ButtonSettings({ user }) {
             <SettingsModal
               user={user}
               isOpen={showSettingsModal}
+              setIsOpen={setShowSettingsModal}
               onClose={handleCloseModal}
             />
           </Overlay>,

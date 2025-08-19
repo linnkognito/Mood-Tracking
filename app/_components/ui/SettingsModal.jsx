@@ -13,7 +13,7 @@ import ButtonCloseModal from './ButtonCloseModal';
 import FormError from './FormError';
 import useDismiss from '@/app/_hooks/useDismiss';
 
-function SettingsModal({ user, isOpen, onClose }) {
+function SettingsModal({ user, isOpen, setIsOpen, onClose }) {
   if (!user) return null;
 
   const modalRef = useRef();
@@ -40,6 +40,7 @@ function SettingsModal({ user, isOpen, onClose }) {
         setAuthError(res.data.message);
         return;
       }
+      setIsOpen(false);
       return res;
     } catch (err) {
       applyFieldErrors(err.data.error ?? {}, setError, setAuthError);

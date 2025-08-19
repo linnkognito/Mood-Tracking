@@ -14,10 +14,10 @@ function ProfilePopover({ user, ...props }) {
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0.8, opacity: 0 }}
       transition={{ duration: 0.1, ease: 'easeOut' }}
-      className='absolute top-600 right-0 w-full sm:w-[200px] px-[18px] py-150 bg-neutral-0 rounded-8 shadow-popover origin-top'
+      className='absolute top-600 right-0 max-sm:w-[calc(100vw-32px)] sm:w-[200px] px-[18px] py-150 bg-neutral-0 rounded-8 shadow-popover origin-top'
       {...props}
     >
-      <div className='flex flex-col pb-100 mb-100 border-b border-blue-100'>
+      <div className='flex flex-col w-full pb-100 mb-100 border-b border-blue-100'>
         <Paragraph preset='6'>{name}</Paragraph>
         <Paragraph preset='7' className='text-neutral-300'>
           {email}
